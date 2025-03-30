@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import useAuth from "@/store/useAuth";
 
 export default function LoginPage() {
   const [user, setUser] = React.useState({
@@ -16,6 +17,7 @@ export default function LoginPage() {
   const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
+  const {setAuthStatus} = useAuth();
 
   useEffect(() => {
     if (user.email.length > 0 && user.password.length > 0) {
@@ -28,11 +30,14 @@ export default function LoginPage() {
   async function onLogin() {
     try {
       setIsLoading(true);
-      const res = await axios.post("/api/users/login", user);
+      const res = await axios.get("https://run.mocky.io/v3/b6bea1bc-9443-47b5-a971-b2227726f212");
 
-      const extractedUser = res.data.user;
+      const extractedUser = res.data.data;
 
       if (extractedUser) {
+        //updated auth status
+        setAuthStatus(true);
+
         toast.success("Login successful!");
         router.push(`/`);
       } else {
