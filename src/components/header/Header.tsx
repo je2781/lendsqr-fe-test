@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Header({ username }: { username: string }) {
   return (
-    <nav className="lg:pl-[1%] pl-[5%] pr-[6%] lg:pr-[3%] py-[1%] flex flex-row items-center shadow-sm justify-between w-full fixed h-[100px] top-[0px]">
+    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[3%] py-[1%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-[0px]">
       <div className="flex flex-row gap-x-28 items-center lg:w-[55%] w-full justify-between">
         <Logo reducer={1.3} />
         <SearchBar />

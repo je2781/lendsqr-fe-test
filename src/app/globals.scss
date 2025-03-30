@@ -63,3 +63,30 @@ body {
   color: var(--foreground);
   font-family: "AvenirNextLTPro", sans-serif, 'Roboto';
 }
+
+//custom scrollbar styling
+// Hide scrollbar but keep scrolling
+.scrollbar-hidden {
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+}
+
+// Show thin scrollbar when hovering
+.scrollbar-hover {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
