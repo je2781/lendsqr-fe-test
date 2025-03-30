@@ -1,7 +1,7 @@
 'use client';
 
-import Union from '../../public/union.png';
-import Name from '../../public/lendsqr.png';
+import Union from '../../../public/union.png';
+import Name from '../../../public/lendsqr.png';
 import Image from "next/image";
 
 const Logo = () => {

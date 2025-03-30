@@ -30,9 +30,9 @@ export default function LoginPage() {
   async function onLogin() {
     try {
       setIsLoading(true);
-      const res = await axios.get("https://run.mocky.io/v3/b6bea1bc-9443-47b5-a971-b2227726f212");
+      const res = await axios.get("https://run.mocky.io/v3/41eafb7c-3d52-4ef9-9586-05003de90398");
 
-      const extractedUser = res.data.data;
+      const extractedUser = res.data;
 
       if (extractedUser) {
         //updated auth status
