@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import { avenirNextLTPro } from "../helpers/fonts";
+import { avenirNextLTPro } from "../helpers/helpers";
 import { Toaster } from "react-hot-toast";
 
 

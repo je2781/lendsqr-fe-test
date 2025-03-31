@@ -13,8 +13,13 @@ const config: Config = {
           400: '#545F7D',
           500: "#213F7D",
         },
-        secondary: {400: "#39CDCC", 800: '#2c3e50'},
-        accent: "#20c997",
+        secondary: {400: "#39CDCC"},
+        dashboard: {
+          users: '#DF18FF',
+          active: '#5718FF',
+          loans: '#F55F44',
+          savings: '#FF3366'
+        },
         checkout: {
           100: "#fef6f6",
           200: "rgb(227, 192, 183)",
