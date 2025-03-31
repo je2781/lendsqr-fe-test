@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import { avenirNextLTPro } from "../helpers/fonts";
 import { Toaster } from "react-hot-toast";
 
 
@@ -21,7 +22,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
       </head>
       <body
-        className={`antialiased`}
+        className={`antialiased ${avenirNextLTPro.variable}`}
       > 
         <Toaster position="bottom-center" />
         {children}

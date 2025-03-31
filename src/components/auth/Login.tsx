@@ -30,19 +30,12 @@ export default function LoginPage() {
   async function onLogin() {
     try {
       setIsLoading(true);
-      const res = await axios.get("https://run.mocky.io/v3/41eafb7c-3d52-4ef9-9586-05003de90398");
+      //updated auth status
+      setAuthStatus(true);
 
-      const extractedUser = res.data;
+      toast.success("Login successful!");
+      router.push(`/`);
 
-      if (extractedUser) {
-        //updated auth status
-        setAuthStatus(true);
-
-        toast.success("Login successful!");
-        router.push(`/`);
-      } else {
-        throw new Error(res.data.message);
-      }
     } catch (error: any) {
       setIsLoading(false);
       return toast.error(error.message);

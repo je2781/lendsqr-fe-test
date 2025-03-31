@@ -4,42 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700');
 
-@font-face {
-  font-family: "AvenirNextLTPro";
-  src: url("/fonts/AvenirNext-Medium.otf") format("opentype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AvenirNextLTPro";
-  src: url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: "AvenirNextLTPro";
-  src: url("/fonts/#AvenirNext-DemiBold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AvenirNextLTPro";
-  src: url("/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AvenirNextLTPro";
-  src: url("/fonts/AvenirNextLTPro-It.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -61,7 +25,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  font-family: "AvenirNextLTPro", sans-serif, 'Roboto';
+  font-family: sans-serif, 'Roboto';
 }
 
 //custom scrollbar styling

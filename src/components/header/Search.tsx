@@ -1,6 +1,6 @@
 export default function SearchBar() {
   return (
-    <div className="focus-within:border-2 focus-within:border-primary-500 w-[47%] mt-3 pr-0 border-2 lg:flex hidden flex-row items-center bg-transparent border-primary-400/15 rounded-md justify-between">
+    <div className="w-[47%] mt-3 pr-0 border-2 lg:flex hidden flex-row items-center bg-transparent border-primary-400/15 rounded-md justify-between">
       <input
         className="pl-3 py-1 focus:outline-none placeholder:font-sans placeholder:text-sm h-full bg-transparent w-full"
         id="search"

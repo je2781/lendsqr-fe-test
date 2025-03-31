@@ -27,7 +27,7 @@ const config: Config = {
         action: "#0dcaf0",
       },
       fontFamily: {
-        sans: ['AvenirNextLTPro', 'sans-serif'],
+        sans: ['var(--font-avenir-next)', 'sans-serif'],
         roboto: ['Roboto']
       },
       fontWeight: {

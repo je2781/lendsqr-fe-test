@@ -1,11 +1,15 @@
 import Header from "../header/Header";
 import Sidebar from "../layout/Sidebar";
+import Content from "./Content";
 
-export default function Dashboard() {
+export default function Dashboard({userData, sectionName}: any) {
+  const data = {userData, sectionName};
+  console.log(data);
   return (
-    <main className="min-h-screen w-full container">
+    <div className="min-h-screen container">
       <Header username="Ayo"/>
       <Sidebar />
-    </main>
+      <Content data={data}/>
+    </div>
   );
 }
