@@ -14,6 +14,11 @@ const config: Config = {
           500: "#213F7D",
         },
         secondary: {400: "#39CDCC"},
+        status: {
+          pending: '#E9B200',
+          active: '#39CD62',
+          blacklisted: '#E4033B'
+        },
         dashboard: {
           users: '#DF18FF',
           active: '#5718FF',
