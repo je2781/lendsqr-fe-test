@@ -4,12 +4,11 @@ import Content from "./Content";
 
 export default function Dashboard({userData, sectionName}: any) {
   const data = {userData, sectionName};
-  console.log(data);
   return (
-    <div className="min-h-screen container">
+    <main className="!bg-primary-500/1 z-0">
       <Header username="Ayo"/>
       <Sidebar />
-      <Content data={data}/>
-    </div>
+      {data.userData ? <Content data={data}/> : <div className="w-full h-full bg-primary-500/7 z-0"></div>}
+    </main>
   );
 }

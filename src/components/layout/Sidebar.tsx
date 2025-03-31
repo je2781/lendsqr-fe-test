@@ -8,8 +8,8 @@ const router = useRouter();
   return (
     <nav
       id="sidebar"
-      className="fixed left-0 top-[100px] z-30 h-[calc(100vh-100px)] overflow-y-auto py-12 w-[283px] hidden
-        shadow-md lg:flex flex-col justify-between scrollbar-hidden hover:scrollbar-hover"
+      className="fixed left-0 top-[100px] h-[calc(100vh-100px)] overflow-y-auto py-12 w-[283px] hidden
+        shadow-md lg:flex flex-col justify-between scrollbar-hidden hover:scrollbar-hover z-10 bg-white"
     >
       <ul
         className={`inline-flex items-start flex-col w-full font-sans font-normal gap-y-8`}
@@ -63,16 +63,16 @@ const router = useRouter();
                         <li
                         key={nestedIndex}
                         className="w-full cursor-pointer flex flex-row items-center group"
-                        onClick={() => router.push(`/dashboard/${Object.keys(item)[0][0].toLowerCase() + Object.keys(item)[0].slice(1)}`)}
+                        onClick={() => router.push(`/${Object.keys(nestedItemList)[0][0].toLowerCase() + Object.keys(nestedItemList)[0].slice(1)}`)}
                       >
                         <div className="py-2 w-[1.5%] bg-transparent group-hover:bg-secondary-400 h-full"></div>
                         <div className="py-2 flex flex-row gap-x-3 items-center w-[98.5%] bg-transparent group-hover:bg-secondary-400/5 pl-7">
                           <i
                             className={`fa-solid ${
                               Object.values(nestedItemList)[0]
-                            } text-primary-500/50 text-lg w-[8%] group-hover:text-primary-500`}
+                            } text-primary-500/60 text-lg w-[8%] group-hover:text-primary-500`}
                           ></i>
-                          <h4 className="text-primary-500/50 w-[92%] group-hover:text-primary-500">
+                          <h4 className="text-primary-500/60 w-[92%] group-hover:text-primary-500">
                             {Object.keys(nestedItemList)[0]}
                           </h4>
                         </div>

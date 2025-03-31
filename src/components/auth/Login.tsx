@@ -103,8 +103,8 @@ export default function LoginPage() {
           type="submit"
           className={`lg:w-full mt-2 max-w-[90%] w-[80%] py-2 font-semibold text-sm text-white rounded-md ${
             buttonDisabled
-              ? "bg-secondary-400/75"
-              : "bg-secondary-400 hover:ring-2 ring-secondary-400"
+              ? "bg-secondary-400/70 cursor-not-allowed"
+              : "bg-secondary-400 hover:ring-2 ring-secondary-400 cursor-pointer"
           } `}
         >
           {isLoading ? "Processing.." : "LOG IN"}

@@ -25,7 +25,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  font-family: sans-serif, 'Roboto';
+  font-family: 'var(--font-avenir-next)', sans-serif, 'Roboto';
 }
 
 //custom scrollbar styling

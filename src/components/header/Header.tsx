@@ -5,12 +5,15 @@ import ProfilePic from "../../../public/profile.png";
 import Image from "next/image";
 
 export default function Header({ username }: { username: string }) {
+  async function openMobileModal(){
+
+  }
   return (
-    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[3%] py-[1%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-[0px]">
+    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[3%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-20 bg-white">
       <div className="flex flex-row gap-x-28 items-center lg:w-[55%] w-full justify-between">
         <Logo reducer={1.3} />
         <SearchBar />
-        <span className="lg:hidden mt-3">
+        <span className="lg:hidden mt-3 cursor-pointer" onClick={openMobileModal}>
           <i className="fa-solid fa-bars text-primary-500 text-2xl"></i>
         </span>
       </div>
