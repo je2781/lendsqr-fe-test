@@ -91,8 +91,8 @@ export function HeaderContent(
   ProfilePic: StaticImageData,
   username: string,
   display = "hidden",
-  flexProp = '',
-  padding = ''
+  flexProp = "",
+  padding = ""
 ) {
   return (
     <div
@@ -111,7 +111,7 @@ export function HeaderContent(
         Docs
       </Link>
       <div className="flex flex-row lg:gap-x-8 gap-x-4 items-center">
-          <i className="fa-regular fa-bell text-lg text-primary-500 cursor-pointer"></i>
+        <i className="fa-regular fa-bell text-lg text-primary-500 cursor-pointer"></i>
         <div className="flex flex-row gap-x-3 items-center">
           <span
             className="h-[48px] w-[48px] overflow-hidden cursor-pointer rounded-[50%] ring-2 ring-offset-1 ring-primary-500"
@@ -132,5 +132,18 @@ export function HeaderContent(
         </div>
       </div>
     </div>
+  );
+}
+
+export function articleHeaderTemplate(width = 'w-[16%]', title = 'ORGANIZATION') {
+  return (
+    <>
+      <li className={width}>
+        <div className="flex flex-row items-center gap-x-2">
+          <h5>{title}</h5>
+          <i className="fa-solid fa-filter text-primary-500"></i>
+        </div>
+      </li>
+    </>
   );
 }
