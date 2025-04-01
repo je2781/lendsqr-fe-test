@@ -13,9 +13,9 @@ async function getuserData() {
   return data.data;
 }
 
-export default async function SectionPage({ params }: { params: { section: string } }) {
+export default async function UsersPage({ params }: { params: { section: string } }) {
   const data = await getuserData();
-  console.log(data);
   const {section} = await params;
-  return <Dashboard userData={data} sectionName={section}/>;
+
+  return <Dashboard userData={data} route={section}/>;
 }

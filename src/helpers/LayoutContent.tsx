@@ -7,8 +7,8 @@ import Image, { StaticImageData } from "next/image";
 
 export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
   return (
-    <>
-      {dashboardItems.map((item, i) => {
+    <ul className="flex flex-col gap-y-7 w-full">
+      {dashboardItems.map((item, i, items) => {
         if (i === 0) {
           return (
             <li
@@ -24,11 +24,15 @@ export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
               <i className="fa-solid fa-angle-down text-primary-500 text-lg"></i>
             </li>
           );
-        } else if (i === 1) {
+        } else if (i === 1 || i === items.length - 1) {
           return (
             <li
               key={i}
-              className={`flex flex-row gap-x-3 items-center w-full cursor-pointer ${paddingLeft}`}
+              className={`flex flex-row gap-x-3 items-center w-full cursor-pointer ${
+                i === items.length - 1 && Object.keys(item)[0] === "Logout"
+                  ? "border border-primary-400/10 border-l-0 border-r-0 border-b-0 pt-6 mt-4"
+                  : ""
+              } ${paddingLeft}`}
             >
               <i
                 className={`fa-solid ${
@@ -50,40 +54,48 @@ export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
                 {Object.keys(item)[0].toUpperCase()}
               </h4>
               <ul className="w-full flex gap-y-2 flex-col text-[16px]">
-                {Object.values(item)[0].map(
-                  (nestedItemList: any, nestedIndex: number) => (
-                    <li
-                      key={nestedIndex}
-                      className="w-full cursor-pointer flex flex-row items-center group"
-                      onClick={() =>
-                        router.push(
-                          `/${
-                            Object.keys(nestedItemList)[0][0].toLowerCase() +
-                            Object.keys(nestedItemList)[0].slice(1)
-                          }`
-                        )
-                      }
-                    >
-                      <div className="py-2 w-[1.5%] bg-transparent group-hover:bg-secondary-400 h-full"></div>
-                      <div className="py-2 flex flex-row gap-x-3 items-center w-[98.5%] bg-transparent group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px]">
-                        <i
-                          className={`fa-solid ${
-                            Object.values(nestedItemList)[0]
-                          } text-primary-500/60 text-lg w-[8%] group-hover:text-primary-500`}
-                        ></i>
-                        <h4 className="text-primary-500/60 w-[92%] group-hover:text-primary-500">
-                          {Object.keys(nestedItemList)[0]}
-                        </h4>
-                      </div>
-                    </li>
-                  )
-                )}
+                {Array.isArray(Object.values(item)[0]) &&
+                  (Object.values(item)[0] as any[]).map(
+                    (nestedItemList, nestedIndex, nestedItems) => (
+                      <li
+                        key={nestedIndex}
+                        className={`w-full cursor-pointer flex flex-row items-center group`}
+                        onClick={() =>
+                          router.push(
+                            `/${
+                              Object.keys(nestedItemList)[0][0].toLowerCase() +
+                              Object.keys(nestedItemList)[0].slice(1)
+                            }`
+                          )
+                        }
+                      >
+                        <div className="py-2 w-[1.5%] bg-transparent group-hover:bg-secondary-400 h-full"></div>
+                        <div className="py-2 flex flex-row gap-x-3 items-center w-[98.5%] bg-transparent group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px]">
+                          <i
+                            className={`fa-solid ${
+                              Object.values(nestedItemList)[0]
+                            } text-primary-500/60 text-lg w-[8%] group-hover:text-primary-500`}
+                          ></i>
+                          <h4 className="text-primary-500/60 w-[92%] group-hover:text-primary-500">
+                            {Object.keys(nestedItemList)[0]}
+                          </h4>
+                        </div>
+                      </li>
+                    )
+                  )}
               </ul>
             </li>
           );
         }
       })}
-    </>
+      <li>
+        <h5
+          className={`font-sans fornt-normal text-[12px] text-primary-500 ${paddingLeft}`}
+        >
+          v1.2.0
+        </h5>
+      </li>
+    </ul>
   );
 }
 
@@ -135,15 +147,17 @@ export function HeaderContent(
   );
 }
 
-export function articleHeaderTemplate(width: string, title: string, filterUsers = () => {}) {
+export function articleHeaderTemplate(
+  width: string,
+  title: string,
+  filterUsers = () => {}
+) {
   return (
-    <>
-      <li className={`${width}`}>
+      <li className={`${width} cursor-pointer`} onClick={filterUsers} id='toggle-settings'>
         <div className="flex flex-row items-center gap-x-2">
           <h5>{title}</h5>
-          <i className="fa-solid fa-filter text-primary-500 cursor-pointer" onClick={filterUsers}></i>
+          <i className="fa-solid fa-filter text-primary-400"></i>
         </div>
       </li>
-    </>
   );
 }

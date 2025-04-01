@@ -20,7 +20,7 @@ export default function LoginPage() {
   const {setAuthStatus} = useAuth();
 
   useEffect(() => {
-    if (user.email.length > 0 && user.password.length > 0) {
+    if (user.email.includes("@") && user.password.length > 0) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);

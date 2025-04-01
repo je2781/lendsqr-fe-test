@@ -13,7 +13,7 @@ export const dashboardItems: {[key: string]: any}[] = [
       { "Savings": "fa-piggy-bank" },
       { "Loan Requests": "fa-hand-holding-dollar" },
       { "Whitelist": "fa-user-plus" },
-      { "Karma": "fa-user-slash" },
+      { "Karma": "fa-user-xmark" },
     ],
   },
   {
@@ -34,9 +34,13 @@ export const dashboardItems: {[key: string]: any}[] = [
       { "Preferences": "fa-sliders" },
       { "Fees and Pricing": "fa-calculator" },
       { "Savings Products": "fa-building-columns" },
-      { "Audit Logs": "fa-clipboard-list" }
-    ],
+      { "Audit Logs": "fa-clipboard-list" },
+      { "Systems Messages": "fa-clock" },
+    ]
   },
+  {
+    "Logout": "fa-right-from-bracket"
+  }
 ];
 
 export const avenirNextLTPro = localFont({
