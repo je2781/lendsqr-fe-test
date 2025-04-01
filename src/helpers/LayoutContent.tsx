@@ -5,6 +5,7 @@ import { dashboardItems } from "./helpers";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
+
 export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
   return (
     <ul className="flex flex-col gap-y-7 w-full">
@@ -153,11 +154,17 @@ export function articleHeaderTemplate(
   filterUsers = () => {}
 ) {
   return (
-      <li className={`${width} cursor-pointer`} onClick={filterUsers} id='toggle-settings'>
-        <div className="flex flex-row items-center gap-x-2">
-          <h5>{title}</h5>
-          <i className="fa-solid fa-filter text-primary-400"></i>
-        </div>
-      </li>
+    <li
+      className={`${width} cursor-pointer`}
+      onClick={filterUsers}
+      id="toggle-settings"
+    >
+      <div className="flex flex-row items-center gap-x-2">
+        <h5>{title}</h5>
+        <i className="fa-solid fa-filter text-primary-400"></i>
+      </div>
+    </li>
   );
 }
+
+

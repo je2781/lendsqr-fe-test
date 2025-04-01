@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import { avenirNextLTPro } from "../helpers/helpers";
+import { avenirNextLTPro, sfCompactText } from "../helpers/helpers";
+import {Roboto} from 'next/font/google';
 import { Toaster } from "react-hot-toast";
 
+const roboto = Roboto({ weight: ["400" ,"500", "600", "700"],  display: "swap", subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Lendsqr",
@@ -22,7 +24,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
       </head>
       <body
-        className={`antialiased ${avenirNextLTPro.variable}`}
+        className={`antialiased ${avenirNextLTPro.variable} ${sfCompactText.variable} ${roboto.className}`}
       > 
           <div id='mobile-modal'></div>
           <div id='options-modal'></div>

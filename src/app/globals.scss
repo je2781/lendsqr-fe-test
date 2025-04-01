@@ -1,8 +1,6 @@
 @use "tailwindcss";
 @config "../../tailwind.config.ts";
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700');
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  font-family: 'var(--font-avenir-next)', sans-serif, 'Roboto';
+  font-family: 'var(--font-avenir-next)', sans-serif, 'var(--font-sf-compact)';
 }
 
 //custom scrollbar styling
@@ -117,5 +115,18 @@ select:-webkit-autofill:focus {
     transform: translateX(-100%);
   }
 }
+
+@layer components {
+  
+  
+  .active-sm {
+    @apply border-none !text-secondary-400;
+  }
+
+  .active {
+    @apply border-secondary-400 border-2 border-l-0 border-r-0 border-t-0 !text-secondary-400;
+  }
+}
+
 
 

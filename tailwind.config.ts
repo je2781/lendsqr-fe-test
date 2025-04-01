@@ -24,21 +24,12 @@ const config: Config = {
           active: '#5718FF',
           loans: '#F55F44',
           savings: '#FF3366'
-        },
-        checkout: {
-          100: "#fef6f6",
-          200: "rgb(227, 192, 183)",
-          300: "rgb(216, 159, 142)",
-        },
-        detail: {
-          100: 'rgba(20, 57, 151, 0.05)',
-          500: '#143997'
-        },
-        action: "#0dcaf0",
+        }
       },
       fontFamily: {
         sans: ['var(--font-avenir-next)', 'sans-serif'],
-        roboto: ['Roboto']
+        mono: ['var(--font-sf-compact)', "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       fontWeight: {
         normal: '400',

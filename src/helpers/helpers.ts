@@ -75,3 +75,14 @@ export const avenirNextLTPro = localFont({
   display: "swap",
 });
 
+export const sfCompactText = localFont({
+  src: [
+    {
+      path: "../../public/fonts/SF-Compact-Display-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    }
+  ],
+  variable: "--font-sf-compact",
+  display: "swap",
+});

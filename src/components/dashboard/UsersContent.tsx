@@ -28,6 +28,7 @@ export default function UsersContent({ data }: any) {
   let timerId: NodeJS.Timeout | null = null;
   let activeUsers: number[] = [];
   let usersWithLoans: number[] = [];
+  let usersWithSavings: number[] = [];
 
   //extracting data from api
   for (const user of currentUsers) {
@@ -35,6 +36,7 @@ export default function UsersContent({ data }: any) {
       activeUsers.push(user.profile.status);
     }
     usersWithLoans.push(user.profile.history.interest);
+    usersWithSavings.push(user.profile.history.savings);
   }
 
   React.useEffect(() => {
@@ -100,7 +102,7 @@ export default function UsersContent({ data }: any) {
     } else {
       setModalState(false);
     }
-  };
+  }
 
   //navigating to details page
   async function openUserDetails(id: string) {
@@ -157,7 +159,7 @@ export default function UsersContent({ data }: any) {
             USERS WITH SAVINGS
           </h4>
           <h3 className="font-sans font-semibold text-primary-500 text-lg">
-            {3}
+            {usersWithSavings.length.toLocaleString()}
           </h3>
         </article>
       </div>
@@ -207,7 +209,8 @@ export default function UsersContent({ data }: any) {
               USERS WITH SAVINGS
             </h4>
             <h3 className="font-sans font-semibold text-primary-500 text-lg">
-              {3}
+            {usersWithSavings.length.toLocaleString()}
+
             </h3>
           </article>
         </div>
@@ -335,6 +338,7 @@ export default function UsersContent({ data }: any) {
                           "Right"
                         )
                       }
+                      styleClasses='right-[197px] top-[122rem] w-[180px]'
                     >
                       <button
                         onClick={() => selectedUserId && openUserDetails(selectedUserId)}
