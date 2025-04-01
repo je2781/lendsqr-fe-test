@@ -26,7 +26,7 @@ describe("User details", () => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush, replace: mockRouterReplace });
   });
 
-  it("to render details component", () => {
+  it("renders details component", () => {
     render(<UserDetails userData={mockUserData.data} id={mockId}/>);
 
     expect(screen.getByText("BLACKLIST USER")).toBeInTheDocument();

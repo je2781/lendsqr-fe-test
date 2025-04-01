@@ -42,7 +42,7 @@ describe("Dashbaord", () => {
 
     render(<Dashboard />);
 
-    //checking if users page is rendered on dashboard
+    //checking if users page component is rendered on dashboard
     expect(screen.getByTestId("usersPage")).toBeInTheDocument();
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
     expect(screen.getByTestId("header")).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("Dashbaord", () => {
     (usePathname as jest.Mock).mockReturnValue("/users/3");
 
     render(<Dashboard/>);
-    //checking if user details page is rendered on dashboard
+    //checking if user details page component is rendered on dashboard
     expect(screen.getByTestId("userDetails")).toBeInTheDocument();
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
     expect(screen.getByTestId("header")).toBeInTheDocument();

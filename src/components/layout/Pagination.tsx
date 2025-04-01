@@ -47,8 +47,8 @@ export default function Pagination({
             }}
           />
           <div className="inline-flex flex-col">
-            <i
-              className="fa-solid fa-angle-up text-primary-500 cursor-pointer -mb-1"
+            <button
+              aria-label="up"
               onClick={() => {
                 if (count <= max) {
                   //updating user data
@@ -59,9 +59,11 @@ export default function Pagination({
                   setCount((prev: number) => Math.min(prev + 1, max));
                 }
               }}
-            ></i>
-            <i
-              className="fa-solid fa-angle-down text-primary-500 cursor-pointer"
+            >
+              <i className="fa-solid fa-angle-up text-primary-500 cursor-pointer -mb-1"></i>
+            </button>
+            <button
+              aria-label="down"
               onClick={() => {
                 if (count >= min) {
                   //updating user data
@@ -72,14 +74,17 @@ export default function Pagination({
                   setCount((prev: number) => Math.max(prev - 1, min));
                 }
               }}
-            ></i>
+            >
+              <i className="fa-solid fa-angle-down text-primary-500 cursor-pointer"></i>
+            </button>
           </div>
         </div>
         <h6>out of {totalItems}</h6>
       </div>
       <div className="no-underline space-x-4 text-center text-[16px] h-full text-primary-400">
         {currentPage > 0 && currentPage !== 1 && (
-          <span
+          <button
+            aria-label="previous"
             onClick={() => {
               const visibleUsers = totalUsers.slice(
                 (currentPage - 2) * itemsPerPage,
@@ -90,12 +95,11 @@ export default function Pagination({
               setCurrentPage((prev: number) => prev - 1);
               setCount(visibleUsers.length);
               setMax(visibleUsers.length);
-
             }}
             className="cursor-pointer bg-primary-500/5 rounded-sm w-fit h-fit py-[2px] px-2"
           >
             <i className="fa-solid fa-angle-left text-primary-500"></i>
-          </span>
+          </button>
         )}
         {currentPage !== 1 && (
           <span
@@ -110,7 +114,9 @@ export default function Pagination({
         {hasPreviousPage && previousPage > 1 && (
           <span
             className={`${
-              isActivePage === previousPage ? "font-medium" : "text-primary-400/40"
+              isActivePage === previousPage
+                ? "font-medium"
+                : "text-primary-400/40"
             } font-sans font-normal`}
           >
             {previousPage}
@@ -123,14 +129,18 @@ export default function Pagination({
         >
           {currentPage}
         </span>
-        {hasPreviousPage && previousPage > 3 && <span className="font-sans font-normal text-primary-400/40">...</span>}
-        {hasNextPage && (lastPage - nextPage < 3) && <span className="font-sans font-normal text-primary-400/40">...</span>}
+        {hasPreviousPage && previousPage > 3 && (
+          <span className="font-sans font-normal text-primary-400/40">...</span>
+        )}
+        {hasNextPage && lastPage - nextPage < 3 && (
+          <span className="font-sans font-normal text-primary-400/40">...</span>
+        )}
         {hasNextPage && nextPage !== lastPage && (
-            <span
+          <span
             className={`${
-                isActivePage === nextPage ? "font-medium" : "text-primary-400/40"
+              isActivePage === nextPage ? "font-medium" : "text-primary-400/40"
             } font-sans font-normal`}
-            >
+          >
             {nextPage}
           </span>
         )}
@@ -144,7 +154,8 @@ export default function Pagination({
           </span>
         )}
         {currentPage < lastPage && (
-          <span
+          <button
+            aria-label="next"
             onClick={() => {
               const visibleUsers = totalUsers.slice(
                 currentPage * itemsPerPage,
@@ -159,7 +170,7 @@ export default function Pagination({
             className="cursor-pointer bg-primary-500/5 rounded-sm w-fit h-fit py-[2px] px-2"
           >
             <i className="fa-solid fa-angle-right text-primary-500"></i>
-          </span>
+          </button>
         )}
       </div>
     </footer>

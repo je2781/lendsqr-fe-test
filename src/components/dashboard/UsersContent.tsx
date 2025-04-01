@@ -324,6 +324,7 @@ export default function UsersContent({ data }: any) {
                         <i
                           onClick={() => showOptionsModalHandler(user.id)}
                           id="toggle-options"
+                          data-testid='openOptions'
                           className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
                         ></i>
                       </div>
@@ -341,6 +342,7 @@ export default function UsersContent({ data }: any) {
                       styleClasses='right-[197px] top-[122rem] w-[180px]'
                     >
                       <button
+                        data-testid='viewDetailsItem'
                         onClick={() => selectedUserId && openUserDetails(selectedUserId)}
                         className="inline-flex flex-row gap-x-3 cursor-pointer items-center w-full text-primary-500 text-medium text-sm"
                       >
@@ -513,6 +515,7 @@ export default function UsersContent({ data }: any) {
                       <i
                         onClick={() => showOptionsModalHandler(user.id)}
                         id="toggle-options"
+                        data-testid='openOptions'
                         className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
                       ></i>
                     </div>
