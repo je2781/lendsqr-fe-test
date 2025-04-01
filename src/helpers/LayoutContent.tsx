@@ -135,13 +135,13 @@ export function HeaderContent(
   );
 }
 
-export function articleHeaderTemplate(width = 'w-[16%]', title = 'ORGANIZATION') {
+export function articleHeaderTemplate(width: string, title: string, filterUsers = () => {}) {
   return (
     <>
-      <li className={width}>
+      <li className={`${width}`}>
         <div className="flex flex-row items-center gap-x-2">
           <h5>{title}</h5>
-          <i className="fa-solid fa-filter text-primary-500"></i>
+          <i className="fa-solid fa-filter text-primary-500 cursor-pointer" onClick={filterUsers}></i>
         </div>
       </li>
     </>

@@ -30,6 +30,25 @@ export const MobileModal = (props: any) => {
   );
 };
 
+const FilterModalOverlay = (props: any) => {
+    return (
+      <main id='filter-settings' aria-orientation="vertical" aria-labelledby='toggle-settings' className="z-20 bg-white w-[245px] flex-col shadow-xl flex px-6 py-8 absolute top-[31rem] opacity-0 translate-x-[-100%] h-fit">
+        {props.children}
+        <i className="fa-solid fa-xmark text-xl absolute right-4 top-5 cursor-pointer text-gray-500" onClick={props.onClick}></i>
+      </main>
+    );
+  };
+
+export const FilterModal = (props: any) => {
+    return (
+      <>
+        {ReactDOM.createPortal(
+          <FilterModalOverlay onClick={props.onClose}>{props.children}</FilterModalOverlay>,
+          document.getElementById("filter-modal")!
+        )}
+      </>
+    );
+  };
 
 
 

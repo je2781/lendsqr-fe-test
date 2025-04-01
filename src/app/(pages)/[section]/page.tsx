@@ -2,7 +2,7 @@ import Dashboard from "@/components/dashboard/Dashboard";
 
 async function getuserData() {
   const res = await fetch(
-    `https://run.mocky.io/v3/12a58f53-766f-4359-b15d-8b1bea8bdc9e`,
+    `https://run.mocky.io/v3/360dc843-a4c1-47f0-a5c6-3b1d6badee64`,
     {
       cache: "no-store", // Ensure the request isn't cached
     }

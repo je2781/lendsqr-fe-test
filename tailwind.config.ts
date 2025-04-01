@@ -46,6 +46,20 @@ const config: Config = {
         semibold: '600',
         bold: '700',
       },
+      keyframes: {
+        fadeInLeft: {
+          '0%': { opacity: 0, transform: 'translateX(-100%)' },
+          '100%': { opacity: 1, transform: 'translateX(37.5rem)' },
+        },
+        fadeOutLeft: {
+          '0%': { opacity: 1, transform: 'translateX(37.5rem)' },
+          '100%': { opacity: 0, transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        fadeInLeft: 'fadeInLeft 0.3s ease-out forwards',
+        fadeOutLeft: 'fadeOutLeft 0.3s ease-in forwards',
+      },
     },
   },
   plugins: [],

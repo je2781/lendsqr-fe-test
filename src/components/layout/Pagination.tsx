@@ -78,7 +78,7 @@ export default function Pagination({
         <h6>out of {totalItems}</h6>
       </div>
       <div className="no-underline space-x-4 text-center text-[16px] h-full text-primary-400">
-        {currentPage > 0 && (
+        {currentPage > 0 && currentPage !== 1 && (
           <span
             onClick={() => {
               const visibleUsers = totalUsers.slice(

@@ -25,6 +25,7 @@ export default function RootLayout({
         className={`antialiased ${avenirNextLTPro.variable}`}
       > 
           <div id='mobile-modal'></div>
+          <div id='filter-modal'></div>
           <div id='backdrop-root'></div>
         <Toaster position="bottom-center" />
         {children}

@@ -3,10 +3,15 @@
 import React from "react";
 import Pagination from "../layout/Pagination";
 import { articleHeaderTemplate } from "@/helpers/LayoutContent";
+import { useRouter } from "next/navigation";
+import useWindowWidth from "@/helpers/getWindowWidth";
+import { FilterModal } from "../layout/Modal";
 
 export default function Content({ data }: any) {
   const [currentPage, setCurrentPage] = React.useState(1);
-
+  const [isFilterModalOpen, setIsFilterModalOpen] = React.useState(false);
+  const router = useRouter();
+  const windowWidth = useWindowWidth();
   //limiting the max number of items shown per page
   const ITEMS_PER_PAGE = 9;
   const [count, setCount] = React.useState<number>(ITEMS_PER_PAGE);
@@ -17,6 +22,7 @@ export default function Content({ data }: any) {
     )
   );
 
+  let timerId: NodeJS.Timeout | null = null;
   let activeUsers: number[] = [];
   let usersWithLoans: number[] = [];
 
@@ -26,6 +32,55 @@ export default function Content({ data }: any) {
       activeUsers.push(user.profile.status);
     }
     usersWithLoans.push(user.profile.history.interest);
+  }
+
+  React.useEffect(() => {
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+    };
+  }, [timerId]);
+
+  React.useEffect(() => {
+    let filterSettings = document.querySelector(
+      "#filter-settings"
+    ) as HTMLElement;
+    if (isFilterModalOpen && filterSettings) {
+      filterSettings.classList.add(
+        "animate-[fadeInLeft_0.3s_ease-out_forwards]"
+      );
+      filterSettings.classList.remove(
+        "animate-[fadeOutLeft_0.3s_ease-in_forwards]"
+      );
+    }
+  }, [isFilterModalOpen]);
+
+  const showFilterModalHandler = () => {
+    setIsFilterModalOpen(true);
+  };
+
+  const hideFilterModalHandler = () => {
+    let filterSettings = document.querySelector(
+      "#filter-settings"
+    ) as HTMLElement;
+    if (filterSettings) {
+      filterSettings.classList.remove(
+        "animate-[fadeInLeft_0.3s_ease-out_forwards]"
+      );
+      filterSettings.classList.add(
+        "animate-[fadeOutLeft_0.3s_ease-in_forwards]"
+      );
+      timerId = setTimeout(() => {
+        setIsFilterModalOpen(false);
+      }, 300);
+    } else {
+      setIsFilterModalOpen(false);
+    }
+  };
+
+  async function openUserDetails(id: string) {
+    router.push(`/users/${id}`);
   }
 
   return (
@@ -83,12 +138,36 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans lg:flex hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md w-[962px] h-[640px]">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-                {articleHeaderTemplate()}
-                {articleHeaderTemplate("w-[13%]", 'USERNAME')}
-                {articleHeaderTemplate("w-[20%]", 'EMAIL')}
-                {articleHeaderTemplate("w-[17%]", 'PHONE NUMBER')}
-                {articleHeaderTemplate("w-[20%]", 'DATE JOINED')}
-                {articleHeaderTemplate("w-[15%]", 'STATUS')}
+              {articleHeaderTemplate(
+                "w-[16%]",
+                "ORGANIZATION",
+                showFilterModalHandler
+              )}
+              {articleHeaderTemplate(
+                "w-[13%]",
+                "USERNAME",
+                showFilterModalHandler
+              )}
+              {articleHeaderTemplate(
+                "w-[20%]",
+                "EMAIL",
+                showFilterModalHandler
+              )}
+              {articleHeaderTemplate(
+                "w-[17%]",
+                "PHONE NUMBER",
+                showFilterModalHandler
+              )}
+              {articleHeaderTemplate(
+                "w-[20%]",
+                "DATE JOINED",
+                showFilterModalHandler
+              )}
+              {articleHeaderTemplate(
+                "w-[15%]",
+                "STATUS",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -133,32 +212,38 @@ export default function Content({ data }: any) {
                     </h5>
                   </li>
                   <li className="w-[15%]">
-                    <span
-                      className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-4 ${
-                        user.profile.status === "inactive"
-                          ? "bg-primary-400/7"
-                          : user.profile.status === "active"
-                          ? "bg-status-active/7"
-                          : user.profile.status === "pending"
-                          ? "bg-status-pending/7"
-                          : "bg-status-blacklisted/7"
-                      }`}
-                    >
-                      <h5
-                        className={`text-start ${
+                    <div className="inline-flex flex-row items-center justify-between w-full">
+                      <span
+                        className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-4 ${
                           user.profile.status === "inactive"
-                            ? "text-primary-400"
+                            ? "bg-primary-400/7"
                             : user.profile.status === "active"
-                            ? "text-status-active"
+                            ? "bg-status-active/7"
                             : user.profile.status === "pending"
-                            ? "text-status-pending"
-                            : "text-status-blacklisted"
+                            ? "bg-status-pending/7"
+                            : "bg-status-blacklisted/7"
                         }`}
                       >
-                        {user.profile.status[0].toUpperCase() +
-                          user.profile.status.slice(1)}
-                      </h5>
-                    </span>
+                        <h5
+                          className={`text-start ${
+                            user.profile.status === "inactive"
+                              ? "text-primary-400"
+                              : user.profile.status === "active"
+                              ? "text-status-active"
+                              : user.profile.status === "pending"
+                              ? "text-status-pending"
+                              : "text-status-blacklisted"
+                          }`}
+                        >
+                          {user.profile.status[0].toUpperCase() +
+                            user.profile.status.slice(1)}
+                        </h5>
+                      </span>
+                      <i
+                        onClick={() => openUserDetails(user.id)}
+                        className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
+                      ></i>
+                    </div>
                   </li>
                 </ul>
               );
@@ -168,7 +253,11 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full')}
+              {articleHeaderTemplate(
+                "w-full",
+                "ORGANIZATION",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -193,7 +282,11 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full', 'USERNAME')}
+              {articleHeaderTemplate(
+                "w-full",
+                "USERNAME",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -218,9 +311,7 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full', 'EMAIL')}
-
-
+              {articleHeaderTemplate("w-full", "EMAIL", showFilterModalHandler)}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -235,7 +326,9 @@ export default function Content({ data }: any) {
                   } py-4`}
                 >
                   <li className="w-full">
-                    <h5 className="text-start">{user.profile.personal.email}</h5>
+                    <h5 className="text-start">
+                      {user.profile.personal.email}
+                    </h5>
                   </li>
                 </ul>
               );
@@ -245,7 +338,11 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full', 'PHONE NUMBER')}
+              {articleHeaderTemplate(
+                "w-full",
+                "PHONE NUMBER",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -260,7 +357,9 @@ export default function Content({ data }: any) {
                   } py-4`}
                 >
                   <li className="w-full">
-                    <h5 className="text-start">{user.profile.personal.mobile}</h5>
+                    <h5 className="text-start">
+                      {user.profile.personal.mobile}
+                    </h5>
                   </li>
                 </ul>
               );
@@ -270,7 +369,11 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full', 'DATE JOINED')}
+              {articleHeaderTemplate(
+                "w-full",
+                "DATE JOINED",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -285,7 +388,8 @@ export default function Content({ data }: any) {
                   } py-4`}
                 >
                   <li className="w-full">
-                    <h5 className="text-start">{new Date(user.profile.date_joined)
+                    <h5 className="text-start">
+                      {new Date(user.profile.date_joined)
                         .toLocaleString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -294,7 +398,8 @@ export default function Content({ data }: any) {
                           minute: "2-digit",
                           hour12: true,
                         })
-                        .replace(" at", "")}</h5>
+                        .replace(" at", "")}
+                    </h5>
                   </li>
                 </ul>
               );
@@ -304,7 +409,11 @@ export default function Content({ data }: any) {
         <article className="bg-white font-sans flex lg:hidden flex-col gap-y-3 text-primary-500 p-6 border border-primary-500/6 rounded-sm shadow-md h-[640px] w-full">
           <header className="w-full">
             <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full">
-            {articleHeaderTemplate('w-full', 'STATUS')}
+              {articleHeaderTemplate(
+                "w-full",
+                "STATUS",
+                showFilterModalHandler
+              )}
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full">
@@ -319,32 +428,38 @@ export default function Content({ data }: any) {
                   } py-4`}
                 >
                   <li className="w-full">
-                    <span
-                      className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-4 ${
-                        user.profile.status === "inactive"
-                          ? "bg-primary-400/7"
-                          : user.profile.status === "active"
-                          ? "bg-status-active/7"
-                          : user.profile.status === "pending"
-                          ? "bg-status-pending/7"
-                          : "bg-status-blacklisted/7"
-                      }`}
-                    >
-                      <h5
-                        className={`text-start ${
+                    <div className="inline-flex flex-row items-center justify-between w-full">
+                      <span
+                        className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-4 ${
                           user.profile.status === "inactive"
-                            ? "text-primary-400"
+                            ? "bg-primary-400/7"
                             : user.profile.status === "active"
-                            ? "text-status-active"
+                            ? "bg-status-active/7"
                             : user.profile.status === "pending"
-                            ? "text-status-pending"
-                            : "text-status-blacklisted"
+                            ? "bg-status-pending/7"
+                            : "bg-status-blacklisted/7"
                         }`}
                       >
-                        {user.profile.status[0].toUpperCase() +
-                          user.profile.status.slice(1)}
-                      </h5>
-                    </span>
+                        <h5
+                          className={`text-start ${
+                            user.profile.status === "inactive"
+                              ? "text-primary-400"
+                              : user.profile.status === "active"
+                              ? "text-status-active"
+                              : user.profile.status === "pending"
+                              ? "text-status-pending"
+                              : "text-status-blacklisted"
+                          }`}
+                        >
+                          {user.profile.status[0].toUpperCase() +
+                            user.profile.status.slice(1)}
+                        </h5>
+                      </span>
+                      <i
+                        onClick={() => openUserDetails(user.id)}
+                        className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
+                      ></i>
+                    </div>
                   </li>
                 </ul>
               );
@@ -361,6 +476,60 @@ export default function Content({ data }: any) {
           setCount={setCount}
           totalUsers={data.userData}
         />
+        {isFilterModalOpen && (
+          <FilterModal onClose={hideFilterModalHandler}>
+            <form className="flex flex-col gap-y-4 text-primary-400 font-medium text-sm font-sans w-full py-8">
+              <div className="flex flex-col items-start w-full">
+                <label>Organization</label>
+                <select className="w-full text:primary-500/5 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none font-sans font-normal text-sm p-2 rounded-md border border-primary-400/20">
+                  <option>Select</option>
+                </select>
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label>Username</label>
+                <input
+                  type="text"
+                  placeholder="User"
+                  className="w-full placeholder:primary-500 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none placeholder:font-sans placeholder:font-normal text-sm px-3 py-2 rounded-md border border-primary-400/20"
+                />
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label>Email</label>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  className="w-full placeholder:primary-500 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none placeholder:font-sans placeholder:font-normal text-sm px-3 py-2 rounded-md border border-primary-400/20"
+                />
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label>Date</label>
+                <input
+                  type="date"
+                  placeholder="Date"
+                  className="w-full placeholder:primary-500 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none placeholder:font-sans placeholder:font-normal text-sm px-3 py-2 rounded-md border border-primary-400/20"
+                />
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label>Phone Number</label>
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                  className="w-full placeholder:primary-500 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none placeholder:font-sans placeholder:font-normal text-sm px-3 py-2 rounded-md border border-primary-400/20"
+                />
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <label>Status</label>
+                <select className="w-full text:primary-500/5 focus:outline-none focus:border-primary-500 bg-transparent focus-outline:none font-sans font-normal text-sm p-2 rounded-md border border-primary-400/20">
+                  <option>Select</option>
+                </select>{" "}
+              </div>
+              <div className="flex flex-row gap-x-4 items-center w-full mt-3">
+                <button className=" w-[50%] text-primary-500 text-sm font-semibold border border-primary-500 hover:bg-primary-500 hover:text-white rounded-md px-7 py-1 bg-transparent">Reset</button>
+                <button className="w-[50%] text-white text-sm font-semibold border border-secondary-400 hover:ring-1 ring-secondary-400 rounded-md px-7 py-1 bg-secondary-400">Filter</button>
+              </div>
+            </form>
+          </FilterModal>
+        )}
       </div>
     </section>
   );

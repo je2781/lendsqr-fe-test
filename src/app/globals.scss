@@ -71,7 +71,7 @@ select:-webkit-autofill:focus {
 }
 
 
-@mixin animation($name) {
+@mixin slideAnimation($name) {
   -webkit-animation: $name 0.3s linear forwards;
   /* Safari */
   animation: $name 0.3s linear forwards;
@@ -79,15 +79,15 @@ select:-webkit-autofill:focus {
 
 #mobile-nav {
   &.forward {
-    @include animation(forward);
+    @include slideAnimation(forward);
   }
 
   &.backward {
-    @include animation(backward);
+    @include slideAnimation(backward);
   }
 }
 
-@mixin animation($name) {
+@mixin slideAnimation($name) {
   @-webkit-keyframes #{$name} {
     @content;
   }
@@ -96,7 +96,7 @@ select:-webkit-autofill:focus {
   }
 }
 
-@include animation(forward) {
+@include slideAnimation(forward) {
   0% {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
@@ -107,7 +107,7 @@ select:-webkit-autofill:focus {
   }
 }
 
-@include animation(backward) {
+@include slideAnimation(backward) {
   0% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
@@ -117,3 +117,5 @@ select:-webkit-autofill:focus {
     transform: translateX(-100%);
   }
 }
+
+
