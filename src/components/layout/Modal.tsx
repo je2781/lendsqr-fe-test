@@ -32,12 +32,12 @@ export const MobileModal = (props: any) => {
 
 const FilterModalOverlay = (props: any) => {
     return (
-      <main id='filter-settings' aria-orientation="vertical" aria-labelledby='toggle-settings' className="z-20 bg-white w-[245px] flex-col shadow-xl flex px-6 py-8 absolute top-[31rem] opacity-0 translate-x-[-100%] h-fit">
+      <main id='filter-settings' aria-orientation="vertical" aria-labelledby='toggle-settings' className="z-20 bg-white w-[245px] lg:left-[37.5rem] left-[18rem] flex-col shadow-xl flex px-6 py-8 absolute lg:top-[31rem] top-[38rem] opacity-0 translate-x-[-100%] h-fit rounded-md">
         {props.children}
         <i className="fa-solid fa-xmark text-xl absolute right-4 top-5 cursor-pointer text-gray-500" onClick={props.onClick}></i>
       </main>
     );
-  };
+  }
 
 export const FilterModal = (props: any) => {
     return (
@@ -48,7 +48,27 @@ export const FilterModal = (props: any) => {
         )}
       </>
     );
-  };
+  }
+
+const OptionsModalOverlay = (props: any) => {
+    return (
+      <main id='user-options' aria-orientation="vertical" aria-labelledby='toggle-options' className="z-20 bg-white w-[180px] flex-col flex gap-y-5 shadow-xl flex px-6 pt-10 pb-6 absolute lg:top-[40rem] lg:right-[207px] right-[197px] top-[122rem] opacity-0 translate-x-[100%] h-fit rounded-md">
+        {props.children}
+        <i className="fa-solid fa-xmark text-xl absolute right-4 top-5 cursor-pointer text-gray-500" onClick={props.onClick}></i>
+      </main>
+    );
+  }
+
+export const OptionsModal = (props: any) => {
+    return (
+      <>
+        {ReactDOM.createPortal(
+          <OptionsModalOverlay onClick={props.onClose}>{props.children}</OptionsModalOverlay>,
+          document.getElementById("options-modal")!
+        )}
+      </>
+    );
+  }
 
 
 

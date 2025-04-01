@@ -49,16 +49,26 @@ const config: Config = {
       keyframes: {
         fadeInLeft: {
           '0%': { opacity: 0, transform: 'translateX(-100%)' },
-          '100%': { opacity: 1, transform: 'translateX(37.5rem)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
         },
         fadeOutLeft: {
-          '0%': { opacity: 1, transform: 'translateX(37.5rem)' },
+          '0%': { opacity: 1, transform: 'translateX(0)' },
           '100%': { opacity: 0, transform: 'translateX(-100%)' },
+        },
+        fadeInRight: {
+          '0%': { opacity: 0, transform: 'translateX(100%)' },  
+          '100%': { opacity: 1, transform: 'translateX(0)' }, 
+        },
+        fadeOutRight: {
+          '0%': { opacity: 1, transform: 'translateX(0)' },   
+          '100%': { opacity: 0, transform: 'translateX(100%)' }, 
         },
       },
       animation: {
         fadeInLeft: 'fadeInLeft 0.3s ease-out forwards',
         fadeOutLeft: 'fadeOutLeft 0.3s ease-in forwards',
+        fadeInRight: 'fadeInRight 0.3s ease-out forwards',
+        fadeOutRight: 'fadeOutRight 0.3s ease-in forwards',
       },
     },
   },

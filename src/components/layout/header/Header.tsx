@@ -63,7 +63,7 @@ export default function Header({ username }: { username: string }) {
   }, [setIsMobileModalOpen, windowWidth]);
 
   return (
-    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[0.25%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-50 bg-white">
+    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[0.25%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-[45] bg-white">
       <div className="flex flex-row gap-x-24 items-center lg:w-[54%] w-full justify-between">
         <Logo reducer={1.3} />
         <SearchBar display='hidden'/>

@@ -9,7 +9,7 @@ const router = useRouter();
     <nav
       id="sidebar"
       className="fixed left-0 top-[100px] h-[calc(100vh-100px)] overflow-y-auto py-12 w-[283px] hidden
-        shadow-md lg:flex flex-col justify-between scrollbar-hidden hover:scrollbar-hover z-10 bg-white"
+        shadow-md lg:flex flex-col justify-between scrollbar-hidden hover:scrollbar-hover z-5 bg-white"
     >
       <ul
         className={`inline-flex items-start flex-col w-full font-sans font-normal gap-y-8`}
