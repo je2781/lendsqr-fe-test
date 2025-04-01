@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useEffect } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import useAuth from "@/store/useAuth";
 
-export default function LoginPage() {
+export default function Login() {
   const [user, setUser] = React.useState({
     email: "",
     password: "",
