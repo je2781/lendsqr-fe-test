@@ -28,6 +28,7 @@ export default function RootLayout({
       > 
           <div id='mobile-modal'></div>
           <div id='options-modal'></div>
+          <div id='details-tab-modal'></div>
           <div id='filter-modal'></div>
           <div id='backdrop-root'></div>
         <Toaster position="bottom-center" />

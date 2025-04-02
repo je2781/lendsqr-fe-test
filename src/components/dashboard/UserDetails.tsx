@@ -2,12 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { OptionsModal } from "../layout/Modal";
+import { DetailsTabModal } from "../layout/Modal";
 
 export default function UserDetails({ userData, id }: {userData: any[], id: string}) {
   let timerId: NodeJS.Timeout | null = null;
 
-  const [isOptionsModalOpen, setIsOptionsModalOpen] = React.useState(false);
+  const [isDetailsTabModalOpen, setIsDetailsTabModalOpen] = React.useState(false);
   const router = useRouter();
 
   //extract user details
@@ -22,16 +22,16 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
   }, [timerId]);
 
   React.useEffect(() => {
-    const userOptions = document.querySelector("#user-options") as HTMLElement;
+    const userDetailsTab = document.querySelector("#user-details") as HTMLElement;
 
-    // Handle user options animation
-    if (isOptionsModalOpen && userOptions) {
-      userOptions.classList.add("animate-[fadeInRight_0.3s_ease-out_forwards]");
-      userOptions.classList.remove(
+    // Handle user DetailsTab animation
+    if (isDetailsTabModalOpen && userDetailsTab) {
+      userDetailsTab.classList.add("animate-[fadeInRight_0.3s_ease-out_forwards]");
+      userDetailsTab.classList.remove(
         "animate-[fadeOutRight_0.3s_ease-in_forwards]"
       );
     }
-  }, [isOptionsModalOpen]);
+  }, [isDetailsTabModalOpen]);
 
   const hideModalHandler = (
     modalId: string,
@@ -56,8 +56,8 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
     }
   };
 
-  const showOptionsModalHandler = () => {
-    setIsOptionsModalOpen(true);
+  const showDetailsTabModalHandler = () => {
+    setIsDetailsTabModalOpen(true);
   };
 
   return (
@@ -138,7 +138,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
             {/* template for small screen  */}
             <div className="flex lg:hidden flex-col items-center gap-y-7 relative">
               <i
-                onClick={showOptionsModalHandler}
+                onClick={showDetailsTabModalHandler}
                 className="fa-solid fa-ellipsis-vertical text-xl absolute right-0 top-3 cursor-pointer text-gray-500"
               ></i>
               <div className="flex-row flex gap-x-2 items-center">
@@ -207,13 +207,13 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
                 </li>
               ))}
             </ul>
-            {isOptionsModalOpen && (
-              <OptionsModal
+            {isDetailsTabModalOpen && (
+              <DetailsTabModal
                 styleClasses="right-[238px] top-[21rem] w-[200px]"
                 onClose={() =>
                   hideModalHandler(
-                    "user-options",
-                    setIsOptionsModalOpen,
+                    "user-details",
+                    setIsDetailsTabModalOpen,
                     "Right"
                   )
                 }
@@ -233,15 +233,15 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
                         i === 0 ? "active-sm" : ""
                       } text-black/60 text-[16px] font-normal cursor-pointer`}
                     >
-                      <div className="w-[145px] h-[29px] flex items-start justify-center">
+                      <button className="w-[145px] h-[29px] flex items-start justify-center">
                         <h4 className="font-mono font-normal text-start">
                           {item}
                         </h4>
-                      </div>
+                      </button>
                     </li>
                   ))}
                 </ul>
-              </OptionsModal>
+              </DetailsTabModal>
             )}
           </div>
         </article>

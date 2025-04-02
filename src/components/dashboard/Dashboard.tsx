@@ -8,8 +8,8 @@ import UsersContent from "./UsersContent";
 
 export default function Dashboard() {
   const pathName = usePathname();
-  
-  const extractedData = localStorage.getItem('users');
+
+  const extractedData = window.localStorage.getItem('users');
   const data = {userData: JSON.parse(extractedData!), sectionName: pathName.slice(1)};
   return (
     <div className="bg-primary-500/1 relative">

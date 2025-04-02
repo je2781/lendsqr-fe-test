@@ -94,3 +94,31 @@ export const OptionsModal: React.FC<OptionsModalProps> = (props) => {
     </>
   );
 };
+
+const DetailsTabModalOverlay: React.FC<OptionsModalOverlayProps> = (props) => {
+  return (
+    <main
+      id='user-details'
+      aria-orientation="vertical"
+      aria-labelledby='toggle-details-tab'
+      className={`z-20 bg-white flex-col flex gap-y-5 shadow-xl flex px-6 pt-10 pb-6 absolute top-[8rem] right-[2px] ${props.styleClasses} opacity-0 translate-x-[100%] h-fit rounded-md`}
+    >
+      {props.children}
+      <i className="fa-solid fa-xmark text-xl absolute right-4 top-5 cursor-pointer text-gray-500" onClick={props.onClick}></i>
+    </main>
+  );
+};
+
+
+export const DetailsTabModal: React.FC<OptionsModalProps> = (props) => {
+  return (
+    <>
+      {ReactDOM.createPortal(
+        <DetailsTabModalOverlay onClick={props.onClose} styleClasses={props.styleClasses}>
+          {props.children}
+        </DetailsTabModalOverlay>,
+        document.getElementById("details-tab-modal")!
+      )}
+    </>
+  );
+};
