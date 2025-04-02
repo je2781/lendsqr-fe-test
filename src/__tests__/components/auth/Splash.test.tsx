@@ -1,5 +1,5 @@
 import { render} from "@testing-library/react";
-import { screen, fireEvent } from "@testing-library/dom";
+import { screen} from "@testing-library/dom";
 import Splash from "@/components/auth/Splash";
 
 

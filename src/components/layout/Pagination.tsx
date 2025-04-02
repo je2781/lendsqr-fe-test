@@ -1,5 +1,6 @@
 "use client";
 
+import { PaginationProps } from "@/interfaces/interfaces";
 import React from "react";
 
 export default function Pagination({
@@ -11,7 +12,7 @@ export default function Pagination({
   totalItems,
   setCurrentUsers,
   totalUsers,
-}: any) {
+}: PaginationProps) {
   //setting limits to items shown
   const [max, setMax] = React.useState<number>(itemsPerPage);
   const min = 1;
@@ -111,7 +112,9 @@ export default function Pagination({
             1
           </span>
         )}
-
+        {hasPreviousPage && previousPage > 1 && previousPage !== 2 && (
+          <span className="font-sans font-normal text-primary-400/40">...</span>
+        )}
         {hasPreviousPage && previousPage > 1 && (
           <span
             className={`${
@@ -130,10 +133,7 @@ export default function Pagination({
         >
           {currentPage}
         </span>
-        {hasPreviousPage && previousPage > 3 && (
-          <span className="font-sans font-normal text-primary-400/40">...</span>
-        )}
-        {hasNextPage && lastPage - nextPage < 3 && (
+        {hasNextPage && nextPage + 3 < lastPage && (
           <span className="font-sans font-normal text-primary-400/40">...</span>
         )}
         {hasNextPage && nextPage !== lastPage && (
@@ -142,7 +142,7 @@ export default function Pagination({
               isActivePage === nextPage ? "font-medium" : "text-primary-400/40"
             } font-sans font-normal`}
           >
-            {nextPage}
+            {lastPage - 1}
           </span>
         )}
         {lastPage !== currentPage && (

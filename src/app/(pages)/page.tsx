@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useReducer } from "react";
+import React from "react";
 import useAuth from "@/store/useAuth";
 import { useRouter } from "next/navigation";
 import Dashboard from "@/components/dashboard/Dashboard";

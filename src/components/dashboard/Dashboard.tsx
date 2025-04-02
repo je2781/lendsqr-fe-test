@@ -6,14 +6,16 @@ import Sidebar from "../layout/Sidebar";
 import UserDetails from "./UserDetails";
 import UsersContent from "./UsersContent";
 
-export default function Dashboard({userData, route, userId}: any) {
+export default function Dashboard() {
   const pathName = usePathname();
-  const data = {userData, sectionName: route ?? pathName.slice(1)};
+  
+  const extractedData = localStorage.getItem('users');
+  const data = {userData: JSON.parse(extractedData!), sectionName: pathName.slice(1)};
   return (
     <div className="bg-primary-500/1 relative">
-      <Header username="Ayo"/>
-      <Sidebar />
-      {data.sectionName  === 'users' ? <UsersContent data={data}/> : <UserDetails userData={data.userData} id={userId ?? ''}/>}
+      <Header username="Ayo" activeSection={data.sectionName}/>
+      <Sidebar activeSection={data.sectionName}/>
+      {data.sectionName  === 'users' ? <UsersContent data={data}/> : <UserDetails userData={data.userData} id={pathName.slice(1).split('/')[1]}/>}
     </div>
   );
 }

@@ -7,9 +7,6 @@ describe("Pagination Component", () => {
   let setCurrentPage: jest.Mock;
   let setCurrentUsers: jest.Mock;
 
-  const max = 10;
-  const min = 1;
-
   const totalUsers = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
     name: `User ${i + 1}`,

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { screen, fireEvent } from "@testing-library/dom";
+import { screen} from "@testing-library/dom";
 import { usePathname } from "next/navigation";
 import Dashboard from "@/components/dashboard/Dashboard";
 
@@ -40,7 +40,7 @@ describe("Dashbaord", () => {
   it("renders the users page when path is 'users'", () => {
     (usePathname as jest.Mock).mockReturnValue("/users");
 
-    render(<Dashboard />);
+    render(<Dashboard/>);
 
     //checking if users page component is rendered on dashboard
     expect(screen.getByTestId("users-page")).toBeInTheDocument();

@@ -87,7 +87,7 @@ export default function UsersContent({ data }: any) {
     setModalState: React.Dispatch<React.SetStateAction<boolean>>,
     fadeOutClass: string
   ) => {
-    let modal = document.querySelector(`#${modalId}`) as HTMLElement;
+    const modal = document.querySelector(`#${modalId}`) as HTMLElement;
 
     if (modal) {
       modal.classList.remove(
@@ -323,7 +323,7 @@ export default function UsersContent({ data }: any) {
                           </h5>
                         </span>
                         <i
-                          onClick={() => showOptionsModalHandler(user.id)}
+                          onClick={() => showOptionsModalHandler(user.user_id)}
                           id="toggle-options"
                           data-testid='open-options'
                           className="fa-solid fa-ellipsis-vertical text-primary-500 text-[16px] cursor-pointer"
@@ -513,7 +513,7 @@ export default function UsersContent({ data }: any) {
                         </h5>
                       </span>
                       <i
-                        onClick={() => showOptionsModalHandler(user.id)}
+                        onClick={() => showOptionsModalHandler(user.user_id)}
                         id="toggle-options"
                         data-testid='open-options'
                         className="fa-solid fa-ellipsis-vertical text-primary-500 text-[16px] cursor-pointer"

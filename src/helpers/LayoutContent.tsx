@@ -5,10 +5,13 @@ import { dashboardItems } from "./helpers";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
-
-export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
+export function SideBarList(
+  router: AppRouterInstance,
+  paddingLeft: string,
+  selectedSection: string
+) {
   return (
-    <ul className="flex flex-col gap-y-7 w-full">
+    <ul className="flex flex-col gap-y-9 w-full">
       {dashboardItems.map((item, i, items) => {
         if (i === 0) {
           return (
@@ -57,32 +60,42 @@ export function SideBarList(router: AppRouterInstance, paddingLeft: string) {
               <ul className="w-full flex gap-y-2 flex-col text-[16px]">
                 {Array.isArray(Object.values(item)[0]) &&
                   (Object.values(item)[0] as any[]).map(
-                    (nestedItemList, nestedIndex, nestedItems) => (
-                      <li
-                        key={nestedIndex}
-                        className={`w-full cursor-pointer flex flex-row items-center group`}
-                        onClick={() =>
-                          router.push(
-                            `/${
-                              Object.keys(nestedItemList)[0][0].toLowerCase() +
-                              Object.keys(nestedItemList)[0].slice(1)
-                            }`
-                          )
-                        }
-                      >
-                        <div className="py-2 w-[1.5%] bg-transparent group-hover:bg-secondary-400 h-full"></div>
-                        <div className="py-2 flex flex-row gap-x-3 items-center w-[98.5%] bg-transparent group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px]">
-                          <i
-                            className={`fa-solid ${
-                              Object.values(nestedItemList)[0]
-                            } text-primary-500/60 text-lg w-[8%] group-hover:text-primary-500`}
-                          ></i>
-                          <h4 className="text-primary-500/60 w-[92%] group-hover:text-primary-500">
-                            {Object.keys(nestedItemList)[0]}
-                          </h4>
-                        </div>
-                      </li>
-                    )
+                    (nestedlistItem, nestedIndex, nestedList) => {
+                      const sectionKey = Object.keys(nestedlistItem)[0].replace(' ', '').toLowerCase(); // Ensure it's a valid key
+                      const isSelected =
+                        selectedSection === sectionKey;
+
+                      return (
+                        <li
+                          key={nestedIndex}
+                          className={`w-full cursor-pointer flex flex-row items-center group`}
+                          onClick={() =>
+                            router.push(
+                              `/${
+                                
+                                Object.keys(nestedlistItem)[0].replace(' ', '').toLowerCase()
+                              }`
+                            )
+                          }
+                        >
+                          <div
+                            className={`py-2 w-[1.5%] group-hover:bg-secondary-400 h-full ${isSelected ? 'bg-secondary-400' : 'bg-transparent'}`}
+                          ></div>
+                          <div
+                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px] ${isSelected ? 'bg-secondary-400/5' : 'bg-transparent'}`}
+                          >
+                            <i
+                              className={`fa-solid ${
+                                Object.values(nestedlistItem)[0]
+                              } text-lg w-[8%] group-hover:text-primary-500 ${isSelected ? 'text-primary-500' : 'text-primary-500/60'}`}
+                            ></i>
+                            <h4 className={`w-[92%] group-hover:text-primary-500 ${isSelected ? 'text-primary-500' : 'text-primary-500/60'}`}>
+                              {Object.keys(nestedlistItem)[0]}
+                            </h4>
+                          </div>
+                        </li>
+                      );
+                    }
                   )}
               </ul>
             </li>
@@ -158,7 +171,7 @@ export function articleHeaderTemplate(
       className={`${width} cursor-pointer`}
       onClick={filterUsers}
       id="toggle-settings"
-      data-testid='filter-users'
+      data-testid="filter-users"
     >
       <div className="flex flex-row items-center gap-x-2">
         <h5>{title}</h5>
@@ -167,5 +180,3 @@ export function articleHeaderTemplate(
     </li>
   );
 }
-
-

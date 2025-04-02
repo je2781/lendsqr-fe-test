@@ -33,11 +33,12 @@ export default function Login() {
       setAuthStatus(true);
 
       toast.success("Login successful!");
-      router.push(`/`);
+      router.push(`/users`);
 
-    } catch (error: any) {
+    } catch (error) {
+      const e = error as Error;
       setIsLoading(false);
-      return toast.error(error.message);
+      return toast.error(e.message);
     } finally {
       setIsLoading(false);
     }

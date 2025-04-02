@@ -1,20 +1,18 @@
 'use client';
 
-import Link from "next/link";
 import Logo from "../../logo/Logo";
 import SearchBar from "./Search";
 import ProfilePic from "../../../../public/profile.png";
-import Image from "next/image";
 import React from "react";
 import { MobileModal } from "../Modal";
 import { useRouter } from "next/navigation";
 import {HeaderContent, SideBarList} from "@/helpers/LayoutContent";
 import useWindowWidth from "@/helpers/getWindowWidth";
 
-export default function Header({ username }: { username: string }) {
+export default function Header({ username, activeSection }: { username: string, activeSection: string }) {
   const [isMobileModalOpen, setIsMobileModalOpen] = React.useState(false);
   const router = useRouter();
-  let windowWidth = useWindowWidth();
+  const windowWidth = useWindowWidth();
 
   let timerId: NodeJS.Timeout | null  = null;
 
@@ -28,7 +26,7 @@ export default function Header({ username }: { username: string }) {
   }, [timerId]);
 
   React.useEffect(() => {
-    let mobileNav = document.querySelector('#mobile-nav') as HTMLElement;
+    const mobileNav = document.querySelector('#mobile-nav') as HTMLElement;
     if (isMobileModalOpen && mobileNav) {
       mobileNav.classList.add('forward');
       mobileNav.classList.remove('backward');
@@ -41,7 +39,7 @@ export default function Header({ username }: { username: string }) {
   };
 
   const hideModalHandler = () => {
-    let mobileNav = document.querySelector('#mobile-nav') as HTMLElement;
+    const mobileNav = document.querySelector('#mobile-nav') as HTMLElement;
     if (mobileNav) {
       mobileNav.classList.remove('forward');
       mobileNav.classList.add('backward');
@@ -77,7 +75,7 @@ export default function Header({ username }: { username: string }) {
           {HeaderContent(ProfilePic, username, 'flex', 'justify-between', 'px-4')}
           <SearchBar display="flex"/>
           <ul className="inline-flex items-start flex-col w-full font-sans font-normal gap-y-8">
-          {SideBarList(router, 'pl-[21px]')}     
+          {SideBarList(router, 'pl-[21px]', activeSection)}     
           </ul>
         </>
     </MobileModal>}

@@ -4,17 +4,14 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { OptionsModal } from "../layout/Modal";
 
-export default function UserDetails({ userData, id }: any) {
+export default function UserDetails({ userData, id }: {userData: any[], id: string}) {
   let timerId: NodeJS.Timeout | null = null;
 
   const [isOptionsModalOpen, setIsOptionsModalOpen] = React.useState(false);
   const router = useRouter();
 
   //extract user details
-  const [user, setUser] = React.useState(
-    userData.find((datum: any) => datum.id === id)
-  );
-
+  const user = userData.find((datum: any) => datum.user_id === id);
   //cleaning up asynchronous callback timers
   React.useEffect(() => {
     return () => {
@@ -41,7 +38,7 @@ export default function UserDetails({ userData, id }: any) {
     setModalState: React.Dispatch<React.SetStateAction<boolean>>,
     fadeOutClass: string
   ) => {
-    let modal = document.querySelector(`#${modalId}`) as HTMLElement;
+    const modal = document.querySelector(`#${modalId}`) as HTMLElement;
 
     if (modal) {
       modal.classList.remove(
@@ -71,7 +68,7 @@ export default function UserDetails({ userData, id }: any) {
       <header className="font-medium text-2xl text-primary-500 font-sans lg:p-0 px-6 flex lg:flex-row flex-col lg:justify-between lg:gap-0 gap-y-4 lg:items-end items-center">
         <div className="inline-flex flex-col items-start gap-y-9">
           <button
-            data-testid='go-back'
+            data-testid="go-back"
             onClick={() => router.replace("/users")}
             className="cursor-pointer inline-flex flex-row gap-x-2 items-center font-normal lg:text-[16px] text-[12px] text-primary-400"
           >
@@ -107,7 +104,7 @@ export default function UserDetails({ userData, id }: any) {
                     {user.profile.personal.full_name}
                   </h1>
                   <h5 className="text-primary-400 text-sm font-normal">
-                    {user.id}
+                    {user.user_id}
                   </h5>
                 </div>
               </div>
@@ -133,9 +130,9 @@ export default function UserDetails({ userData, id }: any) {
               </div>
               <div className="flex flex-col gap-y-1 items-start">
                 <h1 className="font-medium text-[22px] text-primary-500">
-                  &#8358;{user.profile.history.savings.toLocaleString()}
+                  &#8358;{(user.profile.history.savings).toLocaleString()}
                 </h1>
-                <h5 className="font-normal text-primary-500 text-[12px]">{`${user.acct_no}/${user.bank_name}`}</h5>
+                <h5 className="font-normal text-primary-500 text-[12px]">{`${user.acct_no ?? 0}/${user.bank_name ?? 1}`}</h5>
               </div>
             </div>
             {/* template for small screen  */}
@@ -156,15 +153,15 @@ export default function UserDetails({ userData, id }: any) {
                     {user.profile.personal.full_name}
                   </h1>
                   <h5 className="text-primary-400 text-sm font-normal">
-                    {user.id}
+                    {user.user_id}
                   </h5>
                 </div>
               </div>
               <div className="flex flex-col gap-y-1 items-center">
                 <h1 className="font-medium text-[22px] text-primary-500">
-                  &#8358;{user.profile.history.savings.toLocaleString()}
+                  &#8358;{(user.profile.history.savings).toLocaleString()}
                 </h1>
-                <h5 className="font-normal text-primary-500 text-[12px]">{`${user.acct_no}/${user.bank_name}`}</h5>
+                <h5 className="font-normal text-primary-500 text-[12px]">{`${user.acct_no ?? 0}/${user.bank_name ?? 1}`}</h5>
               </div>
 
               <div className="flex flex-col gap-y-1 items-center justify-center">
@@ -279,21 +276,21 @@ export default function UserDetails({ userData, id }: any) {
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">BVN</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.personal.bvn}
+                  {user.profile.personal.bvn ?? 0}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">GENDER</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.personal.gender[0].toUpperCase() +
-                    user.profile.personal.gender.slice(1)}
+                  {(user.profile.personal.gender)[0].toUpperCase() +
+                    (user.profile.personal.gender).slice(1)}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">MARITAL STATUS</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.personal.marital_status[0].toUpperCase() +
-                    user.profile.personal.marital_status.slice(1)}
+                  {(user.profile.personal.marital_status)[0].toUpperCase() +
+                    (user.profile.personal.marital_status).slice(1)}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
@@ -305,8 +302,8 @@ export default function UserDetails({ userData, id }: any) {
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">TYPE OF RESIDENCE</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.personal.residence_type[0].toUpperCase() +
-                    user.profile.personal.residence_type.slice(1)}
+                  {(user.profile.personal.residence_type)[0].toUpperCase() +
+                    (user.profile.personal.residence_type).slice(1)}
                 </h4>
               </div>
             </div>
@@ -327,7 +324,7 @@ export default function UserDetails({ userData, id }: any) {
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">EMPLOYMENT STATUS</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.history.employment_status}
+                  {user.profile.history.employment_status} 
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
@@ -353,13 +350,13 @@ export default function UserDetails({ userData, id }: any) {
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">MONTHLY INCOME</h5>
                 <h4 className="font-medium text-[16px]">
-                  &#8358;{user.profile.history.income.toLocaleString()}
+                  &#8358;{(user.profile.history.income ?? 0).toLocaleString()}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">LOAN REPAYMENT</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.history.interest.toLocaleString()}
+                  {(user.profile.history.interest ?? 0) .toLocaleString()}
                 </h4>
               </div>
             </div>
@@ -397,34 +394,38 @@ export default function UserDetails({ userData, id }: any) {
                 Guarantor
               </h4>
             </header>
-            {user.profile.guarantor.map((g: any, index: number, guarantor: any[]) => (
-              <div key={index} className={`${index === guarantor.length-1 ? 'border-none' : 'border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7'} flex lg:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7`}>
-                <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
-                  <h5 className="font-normal text-[12px]">FULL NAME</h5>
-                  <h4 className="font-medium text-[16px]">
-                    {g.full_name}
-                  </h4>
+            {user.profile.guarantor.map(
+              (g: any, index: number, guarantor: any[]) => (
+                <div
+                  key={index}
+                  className={`${
+                    index === guarantor.length - 1
+                      ? "border-none"
+                      : "border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7"
+                  } flex lg:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7`}
+                >
+                  <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
+                    <h5 className="font-normal text-[12px]">FULL NAME</h5>
+                    <h4 className="font-medium text-[16px]">{g.full_name}</h4>
+                  </div>
+                  <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
+                    <h5 className="font-normal text-[12px]">PHONE NUMBER</h5>
+                    <h4 className="font-medium text-[16px]">{g.mobile}</h4>
+                  </div>
+                  <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
+                    <h5 className="font-normal text-[12px]">EMAIL ADDRESS</h5>
+                    <h4 className="font-medium text-[16px]">{g.email}</h4>
+                  </div>
+                  <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
+                    <h5 className="font-normal text-[12px]">RELATIONSHIP</h5>
+                    <h4 className="font-medium text-[16px]">
+                      {(g.relationship)[0].toUpperCase() +
+                        (g.relationship).slice(1)}
+                    </h4>
+                  </div>
                 </div>
-                <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
-                  <h5 className="font-normal text-[12px]">PHONE NUMBER</h5>
-                  <h4 className="font-medium text-[16px]">
-                    {g.mobile}
-                  </h4>
-                </div>
-                <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
-                  <h5 className="font-normal text-[12px]">EMAIL ADDRESS</h5>
-                  <h4 className="font-medium text-[16px]">
-                    {g.email}
-                  </h4>
-                </div>
-                <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
-                  <h5 className="font-normal text-[12px]">RELATIONSHIP</h5>
-                  <h4 className="font-medium text-[16px]">
-                    {g.relationship[0].toUpperCase() + g.relationship.slice(1)}
-                  </h4>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </section>
         </article>
       </div>

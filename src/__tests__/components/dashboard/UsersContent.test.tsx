@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import mockUserData from "./mockData.json";
 import UsersContent from "@/components/dashboard/UsersContent";
 
-let mockId = "LSQFf587g90";
+const mockId = "LSQFf587g90";
 
 // Mocking useRouter
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-let mockRouterPush = jest.fn();
+const mockRouterPush = jest.fn();
 (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush });
 
 // Mocking useWindow
@@ -37,7 +37,7 @@ jest.mock("../../../components/layout/Modal", () => ({
 }));
 
 describe("Users Content", () => {
-  let userData = Array.isArray(mockUserData.data) ? mockUserData.data : [];
+  const userData = Array.isArray(mockUserData.data) ? mockUserData.data : [];
 
   it("renders users content component", () => {
     render(<UsersContent data={{ userData, sectionName: "users" }} />);
