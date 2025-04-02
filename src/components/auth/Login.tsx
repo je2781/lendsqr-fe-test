@@ -45,7 +45,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex flex-col items-center lg:justify-center pt-36 lg:p-0 min-h-screen w-full">
+    <div className="flex flex-col items-center xl:justify-center lg:pt-64 xl:p-0 min-h-screen w-full">
       <form
         onSubmit={(e) => {
           e.preventDefault();

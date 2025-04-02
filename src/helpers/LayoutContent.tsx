@@ -81,7 +81,7 @@ export function SideBarList(
                             className={`py-2 w-[1.5%] group-hover:bg-secondary-400 h-full ${isSelected ? 'bg-secondary-400' : 'bg-transparent'}`}
                           ></div>
                           <div
-                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px] ${isSelected ? 'bg-secondary-400/5' : 'bg-transparent'}`}
+                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 xl:pl-7 pl-[14px] ${isSelected ? 'bg-secondary-400/5' : 'bg-transparent'}`}
                           >
                             <i
                               className={`fa-solid ${
@@ -121,21 +121,21 @@ export function HeaderContent(
 ) {
   return (
     <div
-      className={`lg:flex ${display} flex-row gap-x-10 lg:w-[20%] w-full items-center lg:mt-3 ${flexProp} ${padding}`}
+      className={`xl:flex ${display} flex-row gap-x-10 xl:w-[20%] w-full items-center xl:mt-3 ${flexProp} ${padding}`}
     >
       <Link
         href="/docs"
-        className="lg:inline-block hidden text-sm font-roboto underline-offset-1 underline font-normal"
+        className="xl:inline-block hidden text-sm font-roboto underline-offset-1 underline font-normal"
       >
         Docs
       </Link>
       <Link
         href="/docs"
-        className="lg:hidden inline-block text-sm font-roboto underline-offset-1 underline font-normal"
+        className="xl:hidden inline-block text-sm font-roboto underline-offset-1 underline font-normal"
       >
         Docs
       </Link>
-      <div className="flex flex-row lg:gap-x-8 gap-x-4 items-center">
+      <div className="flex flex-row xl:gap-x-8 gap-x-4 items-center">
         <i className="fa-regular fa-bell text-lg text-primary-500 cursor-pointer"></i>
         <div className="flex flex-row gap-x-3 items-center">
           <span
@@ -150,7 +150,7 @@ export function HeaderContent(
               className="object-cover w-full h-full"
             />
           </span>
-          <div className="lg:flex hidden flex-row gap-x-3 items-center cursor-pointer">
+          <div className="xl:flex hidden flex-row gap-x-3 items-center cursor-pointer">
             <h5 className="text-sm text-primary-500 font-medium">{username}</h5>
             <i className="fa-solid fa-angle-down text-sm text-primary-500"></i>
           </div>

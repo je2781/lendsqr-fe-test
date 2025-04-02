@@ -1,6 +1,6 @@
 export default function SearchBar({display}: {display: string}) {
   return (
-    <div className={`lg:w-[53%] w-[90%] lg:mt-3 pr-0 border-2 lg:flex ${display} flex-row items-center bg-transparent border-primary-400/15 rounded-md justify-between`}>
+    <div className={`xl:w-[53%] w-[90%] xl:mt-3 pr-0 border-2 xl:flex ${display} flex-row items-center bg-transparent border-primary-400/15 rounded-md justify-between`}>
       <input
         className="pl-3 py-1 focus:outline-none placeholder:font-sans placeholder:text-sm h-full bg-transparent w-full"
         id="search"

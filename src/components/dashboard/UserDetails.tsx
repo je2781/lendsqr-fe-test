@@ -63,19 +63,19 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
   return (
     <main
       role="main"
-      className="lg:pl-[340px] font-sans lg:pr-12 lg:pt-[175px] lg:pb-12 pb-8 pt-[155px] min-h-screen flex flex-col items-center lg:items-stretch gap-y-10"
+      className="xl:pl-[340px] font-sans xl:pr-12 xl:pt-[175px] xl:pb-12 pb-8 pt-[155px] min-h-screen flex flex-col items-center xl:items-stretch gap-y-10"
     >
-      <header className="font-medium text-2xl text-primary-500 font-sans lg:p-0 px-6 flex lg:flex-row flex-col lg:justify-between lg:gap-0 gap-y-4 lg:items-end items-center">
+      <header className="font-medium text-2xl text-primary-500 font-sans xl:p-0 px-6 flex xl:flex-row flex-col xl:justify-between xl:gap-0 gap-y-4 xl:items-end items-center">
         <div className="inline-flex flex-col items-start gap-y-9">
           <button
             data-testid="go-back"
             onClick={() => router.replace("/users")}
-            className="cursor-pointer inline-flex flex-row gap-x-2 items-center font-normal lg:text-[16px] text-[12px] text-primary-400"
+            className="cursor-pointer inline-flex flex-row gap-x-2 items-center font-normal xl:text-[16px] text-[12px] text-primary-400"
           >
             <i className="fa-solid fa-arrow-left text-primary-400"></i>
             <h4>Back To Users</h4>
           </button>
-          <h1 className="font-medium text-primary-500 lg:text-[24px] text-[20px]">
+          <h1 className="font-medium text-primary-500 xl:text-[24px] text-[20px]">
             User Details
           </h1>
         </div>
@@ -88,19 +88,19 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
           </button>
         </div>
       </header>
-      <div className="flex items-center flex-col lg:w-[963px] w-full md:w-[70%] lg:h-[210px] h-[275px] lg:px-0 px-6">
-        <article className="w-full h-full px-6 lg:pl-6 lg:pr-10 pb-0 pt-6 bg-white border border-primary-500/6 rounded-sm shadow-md">
+      <div className="flex items-center flex-col xl:w-[963px] w-full md:w-[70%] xl:h-[210px] h-[275px] xl:px-0 px-6">
+        <article className="w-full h-full px-6 xl:pl-6 xl:pr-10 pb-0 pt-6 bg-white border border-primary-500/6 rounded-sm shadow-md">
           <div className="flex flex-col justify-between h-full w-full">
-            <div className="lg:flex hidden flex-row gap-x-10 items-center">
+            <div className="xl:flex hidden flex-row gap-x-10 items-center">
               <div className="flex-row flex gap-x-4 items-center">
-                <span className="lg:h-[100px] lg:w-[100px] h-[70px] w-[70px] rounded-[50%] bg-cover bg-center bg-primary-500/16 flex justify-center items-center">
+                <span className="xl:h-[100px] xl:w-[100px] h-[70px] w-[70px] rounded-[50%] bg-cover bg-center bg-primary-500/16 flex justify-center items-center">
                   <label htmlFor="pic" className="cursor-pointer">
-                    <i className="fa-regular fa-user text-primary-500 lg:text-[40px] text-[30px]"></i>
+                    <i className="fa-regular fa-user text-primary-500 xl:text-[40px] text-[30px]"></i>
                   </label>
                   <input className="hidden" type="file" id="pic" />
                 </span>
                 <div className="inline-flex flex-col items-start font-sans">
-                  <h1 className="text-primary-500 font-medium lg:text-[22px] text-[18px]">
+                  <h1 className="text-primary-500 font-medium xl:text-[22px] text-[18px]">
                     {user.profile.personal.full_name}
                   </h1>
                   <h5 className="text-primary-400 text-sm font-normal">
@@ -136,20 +136,20 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
               </div>
             </div>
             {/* template for small screen  */}
-            <div className="flex lg:hidden flex-col items-center gap-y-7 relative">
+            <div className="flex xl:hidden flex-col items-center gap-y-7 relative">
               <i
                 onClick={showDetailsTabModalHandler}
                 className="fa-solid fa-ellipsis-vertical text-xl absolute right-0 top-3 cursor-pointer text-gray-500"
               ></i>
               <div className="flex-row flex gap-x-2 items-center">
-                <span className="lg:h-[100px] lg:w-[100px] h-[70px] w-[70px] rounded-[50%] bg-cover bg-center bg-primary-500/16 flex justify-center items-center">
+                <span className="xl:h-[100px] xl:w-[100px] h-[70px] w-[70px] rounded-[50%] bg-cover bg-center bg-primary-500/16 flex justify-center items-center">
                   <label htmlFor="pic" className="cursor-pointer">
-                    <i className="fa-regular fa-user text-primary-500 lg:text-[40px] text-[30px]"></i>
+                    <i className="fa-regular fa-user text-primary-500 xl:text-[40px] text-[30px]"></i>
                   </label>
                   <input className="hidden" type="file" id="pic" />
                 </span>
                 <div className="inline-flex flex-col items-start font-sans">
-                  <h1 className="text-primary-500 font-medium lg:text-[22px] text-[18px]">
+                  <h1 className="text-primary-500 font-medium xl:text-[22px] text-[18px]">
                     {user.profile.personal.full_name}
                   </h1>
                   <h5 className="text-primary-400 text-sm font-normal">
@@ -186,7 +186,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
               </div>
             </div>
             {/* template for small screen  */}
-            <ul className="lg:flex hidden flex-row justify-between w-full">
+            <ul className="xl:flex hidden flex-row justify-between w-full">
               {[
                 "General Details",
                 "Documents",
@@ -246,15 +246,15 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
           </div>
         </article>
       </div>
-      <div className="flex items-center flex-col lg:w-[963px] w-full md:w-[70%] lg:h-[910px] h-fit lg:px-0 px-6">
-        <article className="w-full h-full px-6 lg:pl-6 lg:pr-10 pb-0 pt-6 pb-6 bg-white border border-primary-500/6 rounded-sm shadow-md">
+      <div className="flex items-center flex-col xl:w-[963px] w-full md:w-[70%] xl:h-[910px] h-fit xl:px-0 px-6">
+        <article className="w-full h-full px-6 xl:pl-6 xl:pr-10 pb-0 pt-6 pb-6 bg-white border border-primary-500/6 rounded-sm shadow-md">
           <section className="flex flex-col items-startn gap-y-7">
             <header>
               <h4 className="font-medium text-[16px] text-primary-500">
                 Personal Information
               </h4>
             </header>
-            <div className="flex lg:flex-row flex-col flex-wrap justify-start gap-x-20 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
+            <div className="flex xl:flex-row flex-col flex-wrap justify-start gap-x-20 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">FULL NAME</h5>
                 <h4 className="font-medium text-[16px]">
@@ -314,7 +314,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
                 Education and Employment
               </h4>
             </header>
-            <div className="flex lg:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
+            <div className="flex xl:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">LEVEL OF EDUCATION</h5>
                 <h4 className="font-medium text-[16px]">
@@ -367,7 +367,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
                 Socials
               </h4>
             </header>
-            <div className="flex lg:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
+            <div className="flex xl:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7 border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7">
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">TWITTER/X</h5>
                 <h4 className="font-medium text-[16px]">
@@ -402,7 +402,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
                     index === guarantor.length - 1
                       ? "border-none"
                       : "border border-t-0 border-l-0 border-r-0 border-primary-500/10 pb-7"
-                  } flex lg:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7`}
+                  } flex xl:flex-row flex-col flex-wrap justify-start gap-x-23 gap-y-7`}
                 >
                   <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                     <h5 className="font-normal text-[12px]">FULL NAME</h5>
