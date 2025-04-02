@@ -60,10 +60,9 @@ export function SideBarList(
               <ul className="w-full flex gap-y-2 flex-col text-[16px]">
                 {Array.isArray(Object.values(item)[0]) &&
                   (Object.values(item)[0] as any[]).map(
-                    (nestedlistItem, nestedIndex, nestedList) => {
+                    (nestedlistItem, nestedIndex) => {
                       const sectionKey = Object.keys(nestedlistItem)[0].replace(' ', '').toLowerCase(); // Ensure it's a valid key
-                      const isSelected =
-                        selectedSection === sectionKey;
+                      const isSelected = selectedSection.includes(sectionKey);
 
                       return (
                         <li

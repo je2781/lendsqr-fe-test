@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 
 
-export const dashboardItems: {[key: string]: any}[] = [
+export const dashboardItems = [
   { "Switch Organization": "fa-briefcase" },
   { "Dashboard": "fa-house" },
   {

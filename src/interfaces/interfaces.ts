@@ -1,5 +1,4 @@
-export // Define the interface for the component props
-interface PaginationProps {
+export interface PaginationProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   itemsPerPage: number;

@@ -13,7 +13,7 @@ const MobileModalOverlay: React.FC<MobileModalOverlayProps> = (props) => {
       id='mobile-nav'
       aria-orientation="vertical"
       aria-labelledby='toggle-button'
-      className={`${props.classes ? props.classes : 'bg-white px-3 pt-[70px]'} z-[45] w-4/5 flex-col pb-12 gap-y-12 h-screen items-center flex fixed top-0 left-0 overflow-y-auto scrollbar-hidden hover:scrollbar-hover`}
+      className={`${props.classes ? props.classes : 'bg-white pt-[70px]'} z-[45] w-4/5 flex-col pb-12 gap-y-12 h-screen items-center flex fixed top-0 left-0 overflow-y-auto scrollbar-hidden hover:scrollbar-hover`}
     >
       {props.children}
       <i className="fa-solid fa-xmark text-xl absolute right-4 top-5 cursor-pointer text-gray-500" onClick={props.onClick}></i>

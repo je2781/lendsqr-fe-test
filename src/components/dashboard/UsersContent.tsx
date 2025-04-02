@@ -18,7 +18,7 @@ export default function UsersContent({ data }: any) {
   //limiting the max number of items shown per page
   const ITEMS_PER_PAGE = 9;
   const [count, setCount] = React.useState<number>(ITEMS_PER_PAGE);
-  const [currentUsers, setCurrentUsers] = React.useState<any[]>(
+  const [currentUsers, setCurrentUsers] = React.useState<Array<any>>(
     data.userData.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       ITEMS_PER_PAGE * currentPage
@@ -26,9 +26,9 @@ export default function UsersContent({ data }: any) {
   );
 
   let timerId: NodeJS.Timeout | null = null;
-  let activeUsers: number[] = [];
-  let usersWithLoans: number[] = [];
-  let usersWithSavings: number[] = [];
+  const activeUsers: number[] = [];
+  const usersWithLoans: number[] = [];
+  const usersWithSavings: number[] = [];
 
   //extracting data from api
   for (const user of currentUsers) {
