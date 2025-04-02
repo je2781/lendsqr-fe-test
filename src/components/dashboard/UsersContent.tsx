@@ -326,7 +326,7 @@ export default function UsersContent({ data }: any) {
                           onClick={() => showOptionsModalHandler(user.id)}
                           id="toggle-options"
                           data-testid='open-options'
-                          className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
+                          className="fa-solid fa-ellipsis-vertical text-primary-500 text-[16px] cursor-pointer"
                         ></i>
                       </div>
                     </li>
@@ -516,7 +516,7 @@ export default function UsersContent({ data }: any) {
                         onClick={() => showOptionsModalHandler(user.id)}
                         id="toggle-options"
                         data-testid='open-options'
-                        className="fa-solid fa-ellipsis-vertical text-primary-500 text-sm cursor-pointer"
+                        className="fa-solid fa-ellipsis-vertical text-primary-500 text-[16px] cursor-pointer"
                       ></i>
                     </div>
                   </li>

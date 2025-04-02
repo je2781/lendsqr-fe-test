@@ -27,7 +27,7 @@ export default function Pagination({
     <footer className="flex lg:flex-row flex-col items-center lg:justify-between gap-y-7 lg:gap-0 w-full h-[30px] font-sans">
       <div className="font-normal text-sm text-primary-500 inline-flex flex-row items-center gap-x-2 h-full">
         <h6>Showing</h6>
-        <div className="inline-flex flex-row items-center gap-x-2 bg-primary-500/10 w-[60px] px-2 prounded-xs">
+        <div className="inline-flex flex-row items-center gap-x-2 bg-primary-500/10 w-[60px] h-[30px] px-2 rounded-xs">
           <input
             type="text"
             className="focus:outline-none text-primary-500 w-full px-1 py-1"
@@ -49,6 +49,7 @@ export default function Pagination({
           <div className="inline-flex flex-col">
             <button
               aria-label="up"
+              className="-mb-2"
               onClick={() => {
                 if (count <= max) {
                   //updating user data
@@ -60,7 +61,7 @@ export default function Pagination({
                 }
               }}
             >
-              <i className="fa-solid fa-angle-up text-primary-500 cursor-pointer -mb-1"></i>
+              <i className="fa-solid fa-angle-up text-primary-500 cursor-pointer"></i>
             </button>
             <button
               aria-label="down"

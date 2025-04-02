@@ -11,7 +11,9 @@ export default function UserDetails({ userData, id }: any) {
   const router = useRouter();
 
   //extract user details
-  const user = userData.find((datum: any) => datum.id === id);
+  const [user, setUser] = React.useState(
+    userData.find((datum: any) => datum.id === id)
+  );
 
   //cleaning up asynchronous callback timers
   React.useEffect(() => {

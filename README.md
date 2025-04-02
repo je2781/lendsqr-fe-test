@@ -10,27 +10,17 @@ Lendsqr
 =========
 
 ## development
-I started with the project structure, and moved the routes into the (pages) folder to allow for a global state provider controlling authentication . To manage authentication I used a stateful data storage system (sessions/cookies), rather than tokens, because the views are being served to the client.
+I started with the project structure, and moved the routes into the (pages) folder to allow for a global state provider controlling authentication. As I'm retrieving users data from a mock api, the details page is also being fed. This is better than storing in teh data in local storage, as it is large. As this is a limited implemented of a fullsatck app, the global state is used to reset the route stack.
 
-I also used a rendering template to design a frontend for the service, __so all endpoints return a view__.
+## testing
+Unit tests were done on all the page components, excluding UI components. However due to frequent use of the setState, tests couldn't run for tracking the current page, editable displayed users on pagination, as a stack of setStates are being called to compensate for the standard design of retrieving updates from a database. Hence, because of the stack of setStates, updates aren't stored on time in the state variables.
 
 ## How to run the app
 
-Run (npm run start:dev) from the main directory to compile for development. To test run (npm t). 
-
-__Make sure you have MySQL community server/workbench installed, and update the database from the db directory using (npx knex migrate:latest --env testing), to create the testing tables on MySQl local instance__
-
-## The Database and relationships
-
-The knexjs ORM was used to translate queries for MySql(on local machine), and PlanetScale (for production). The migrations created were users, and transfers; which housed the user data, and user transfer data. PlanetScale doesn't allow foreign key constraints, so I improvised, by inserting the user_id into the transfers table, for every user transfer. See E-R diagram below for relationships between the entities.
-
-[![demo credit ER diagram](/demo_credit.drawio.png?raw=true)](#erdiagram)
+Run (npm run dev) from the main directory to compile for development. To test run (npm run test). 
 
 ## Deployment
 
-Heroku was used for deployment (see production URL below), while the cloudinary nodejs sdk was used to upload/download user images, as Heroku doesn't store user generated files.
-
-https://joshua-eze-lendsqr-be-test-d68fed4092b4.herokuapp.com.
 
 
 
