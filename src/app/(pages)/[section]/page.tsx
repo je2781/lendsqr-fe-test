@@ -2,7 +2,7 @@
 import Dashboard from "@/components/dashboard/Dashboard";
 
 
-export default async function UsersPage({ params }: { params: { section: string } }) {
+export default async function UsersPage() {
 
 
   return <Dashboard />;

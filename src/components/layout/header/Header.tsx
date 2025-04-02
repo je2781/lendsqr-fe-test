@@ -34,7 +34,7 @@ export default function Header({ username, activeSection }: { username: string, 
     
   }, [isMobileModalOpen]);
 
-  const showModalHandler = (e: React.MouseEvent) => {
+  const showModalHandler = () => {
     setIsMobileModalOpen(true);
   };
 
