@@ -20,6 +20,7 @@ Unit tests were done on all the page components, excluding UI components. Howeve
 Run (npm run dev) from the main directory to compile for development. To test run (npm run test). 
 
 ## Deployment
+https://joshua-eze-lendsqr-fe-test.vercel.app
 
 
 
