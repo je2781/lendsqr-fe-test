@@ -72,7 +72,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
             onClick={() => router.replace("/users")}
             className="cursor-pointer inline-flex flex-row gap-x-2 items-center font-normal xl:text-[16px] text-[12px] text-primary-400"
           >
-            <i className="fa-solid fa-arrow-left text-primary-400"></i>
+            <i className="fa-solid fa-arrow-left-long text-primary-400"></i>
             <h4>Back To Users</h4>
           </button>
           <h1 className="font-medium text-primary-500 xl:text-[24px] text-[20px]">
