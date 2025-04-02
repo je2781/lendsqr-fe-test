@@ -66,7 +66,7 @@ describe("Login", () => {
     fireEvent.click(loginButton);
 
     expect(toast.success).toHaveBeenCalledWith("Login successful!");
-    expect(mockRouterPush).toHaveBeenCalledWith("/");
+    expect(mockRouterPush).toHaveBeenCalledWith("/users");
   });
 
   it("shows and hides password when clicking SHOW button", async () => {

@@ -18,7 +18,7 @@ jest.mock("../../../components/layout/Modal", () => ({
 describe("User details", () => {
   let mockRouterPush: jest.Mock;
   let mockRouterReplace: jest.Mock;
-  let mockId = 'LSQFf587g90';
+  const mockId = 'LSQFf587g90';
 
   beforeEach(() => {
     mockRouterPush = jest.fn();
@@ -27,7 +27,7 @@ describe("User details", () => {
   });
 
   it("renders details component", () => {
-    render(<UserDetails userData={mockUserData.data} id={mockId}/>);
+    render(<UserDetails userData={mockUserData} id={mockId}/>);
 
     expect(screen.getByText("BLACKLIST USER")).toBeInTheDocument();
     expect(screen.getByText("ACTIVATE USER")).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe("User details", () => {
   });
 
   it("goes back to users page when back button is pressed", () => {
-    render(<UserDetails userData={mockUserData.data} id={mockId}/>);
+    render(<UserDetails userData={mockUserData} id={mockId}/>);
 
     const backButton = screen.getByTestId("go-back");
 

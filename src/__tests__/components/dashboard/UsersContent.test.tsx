@@ -37,7 +37,7 @@ jest.mock("../../../components/layout/Modal", () => ({
 }));
 
 describe("Users Content", () => {
-  const userData = Array.isArray(mockUserData.data) ? mockUserData.data : [];
+  const userData = Array.isArray(mockUserData) ? mockUserData : [];
 
   it("renders users content component", () => {
     render(<UsersContent data={{ userData, sectionName: "users" }} />);
