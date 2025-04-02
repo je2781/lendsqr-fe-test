@@ -61,11 +61,11 @@ export default function Header({ username, activeSection }: { username: string, 
   }, [setIsMobileModalOpen, windowWidth]);
 
   return (
-    <nav className="xl:pl-0 pl-[5%] pr-[6%] xl:pr-[0.25%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-20 bg-white">
-      <div className="flex flex-row gap-x-24 items-center xl:w-[54%] w-full justify-between">
+    <nav className="lg:pl-0 pl-[5%] pr-[6%] lg:pr-[0.25%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-20 bg-white">
+      <div className="flex flex-row gap-x-24 items-center lg:w-[54%] w-full justify-between">
         <Logo reducer={1.3} />
         <SearchBar display='hidden'/>
-        <span className="xl:hidden mt-3 cursor-pointer" onClick={showModalHandler} id='toggle-button'>
+        <span className="lg:hidden mt-3 cursor-pointer" onClick={showModalHandler} id='toggle-button'>
           <i className="fa-solid fa-bars text-primary-500 text-2xl"></i>
         </span>
       </div>
