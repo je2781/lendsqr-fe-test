@@ -121,7 +121,7 @@ export function HeaderContent(
 ) {
   return (
     <div
-      className={`lg:flex ${display} flex-row gap-x-10 lg:w-[20%] w-full items-center lg:mt-3 ${flexProp} ${padding}`}
+      className={`lg:flex ${display} flex-row gap-x-10 lg:w-[20%] w-full items-center lg:mt- mt-2 ${flexProp} ${padding}`}
     >
       <Link
         href="/docs"

@@ -72,7 +72,7 @@ export default function Header({ username, activeSection }: { username: string, 
       {HeaderContent(ProfilePic, username)}
       {isMobileModalOpen && <MobileModal onClose={hideModalHandler}>
         <>
-          {HeaderContent(ProfilePic, username, 'flex', 'justify-between', 'px-4')}
+          {HeaderContent(ProfilePic, username, 'flex', 'justify-between', 'px-[18px]')}
           <SearchBar display="flex"/>
           <ul className="inline-flex items-start flex-col w-full font-sans font-normal gap-y-8">
           {SideBarList(router, 'pl-[21px]', activeSection)}     
