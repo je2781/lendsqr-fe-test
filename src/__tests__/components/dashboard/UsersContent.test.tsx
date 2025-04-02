@@ -25,11 +25,11 @@ jest.mock("@/helpers/getWindowWidth", () => ({
 
 // Mock the modal
 jest.mock("../../../components/layout/Modal", () => ({
-  FilterModal: () => <div data-testid="filterModal">Modal</div>,
+  FilterModal: () => <div data-testid="filter-modal">Modal</div>,
   OptionsModal: () => (
-    <div data-testid="optionsModal">
+    <div data-testid="options-modal">
       <button
-        data-testid="viewDetailsItem"
+        data-testid="options-modal-view-details-item"
         onClick={() => mockRouterPush(`/users/${mockId}`)}
       ></button>
     </div>
@@ -45,19 +45,19 @@ describe("Users Content", () => {
     expect(screen.getAllByText("ACTIVE USERS")).toBeInstanceOf(Array);
     expect(screen.getAllByText("USERS WITH LOANS")).toBeInstanceOf(Array);
     expect(screen.getAllByText("USERS WITH SAVINGS")).toBeInstanceOf(Array);
-    expect(screen.getAllByTestId("filterUsers")).toBeInstanceOf(Array);
+    expect(screen.getAllByTestId("filter-users")).toBeInstanceOf(Array);
 
     // Ensure at least one element is found
     expect(screen.getAllByText("ACTIVE USERS").length).toBeGreaterThan(0);
     expect(screen.getAllByText("USERS WITH LOANS").length).toBeGreaterThan(0);
     expect(screen.getAllByText("USERS WITH SAVINGS").length).toBeGreaterThan(0);
-    expect(screen.getAllByTestId("filterUsers").length).toBeGreaterThan(0);
+    expect(screen.getAllByTestId("filter-users").length).toBeGreaterThan(0);
   });
 
   it("navigates to user details page when view details on options modal is clicked", () => {
     render(<UsersContent data={{ userData, sectionName: "users" }} />);
 
-    const openOptionsIcons = screen.getAllByTestId("openOptions");
+    const openOptionsIcons = screen.getAllByTestId("open-options");
 
     //becuse mock user data only has one user and responsive design of users article
     //results in duplication of parts of the article
@@ -66,10 +66,10 @@ describe("Users Content", () => {
     fireEvent.click(openOptionsIcons[0]);
 
     //expect options modal to appear
-    const optionsModal = screen.getByTestId("optionsModal");
+    const optionsModal = screen.getByTestId("options-modal");
     expect(optionsModal).toBeInTheDocument();
 
-    const viewDetailsItem = screen.getByTestId("viewDetailsItem");
+    const viewDetailsItem = screen.getByTestId("options-modal-view-details-item");
     //niw click on teh vew details item
     fireEvent.click(viewDetailsItem);
 
@@ -80,13 +80,13 @@ describe("Users Content", () => {
     render(<UsersContent data={{ userData, sectionName: "users" }} />);
 
     //find and fire click event on filter icons
-    const filterUsersIcons = screen.getAllByTestId("filterUsers");
+    const filterUsersIcons = screen.getAllByTestId("filter-users");
 
     expect(filterUsersIcons.length).toBeGreaterThan(6);
 
     fireEvent.click(filterUsersIcons[0]);
 
     //expect filter modal to appear
-    expect(screen.getByTestId("filterModal")).toBeInTheDocument();
+    expect(screen.getByTestId("filter-modal")).toBeInTheDocument();
   });
 });

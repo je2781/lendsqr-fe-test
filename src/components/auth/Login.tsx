@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import useAuth from "@/store/useAuth";
@@ -31,6 +32,8 @@ export default function Login() {
       setIsLoading(true);
       //updated auth status
       setAuthStatus(true);
+      //storing auth state cookie
+      Cookies.set("is_auth", 'true', { expires: 7 });
 
       toast.success("Login successful!");
       router.push(`/`);

@@ -11,10 +11,9 @@ export default function UserDetails({ userData, id }: any) {
   const router = useRouter();
 
   //extract user details
-  const [user, setUser] = React.useState(
-    userData.find((datum: any) => datum.id === id)
-  );
+  const user = userData.find((datum: any) => datum.id === id);
 
+  //cleaning up asynchronous callback timers
   React.useEffect(() => {
     return () => {
       if (timerId) {
@@ -70,7 +69,7 @@ export default function UserDetails({ userData, id }: any) {
       <header className="font-medium text-2xl text-primary-500 font-sans lg:p-0 px-6 flex lg:flex-row flex-col lg:justify-between lg:gap-0 gap-y-4 lg:items-end items-center">
         <div className="inline-flex flex-col items-start gap-y-9">
           <button
-            data-testid='goBack'
+            data-testid='go-back'
             onClick={() => router.replace("/users")}
             className="cursor-pointer inline-flex flex-row gap-x-2 items-center font-normal lg:text-[16px] text-[12px] text-primary-400"
           >

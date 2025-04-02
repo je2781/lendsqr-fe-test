@@ -6,8 +6,6 @@ import useAuth from "@/store/useAuth";
 import userEvent from "@testing-library/user-event";
 import toast from "react-hot-toast";
 
-// import { createMemoryHistory } from 'history';
-
 // Mocking useRouter
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),

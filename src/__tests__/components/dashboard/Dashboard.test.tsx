@@ -24,7 +24,7 @@ jest.mock("../../../components/layout/Sidebar", () => {
 // Mock the users content
 jest.mock("../../../components/dashboard/UsersContent", () => {
   return function MockUsersPage() {
-    return <div data-testid="usersPage">UsersPage Component</div>;
+    return <div data-testid="users-page">UsersPage Component</div>;
   };
 });
 
@@ -43,7 +43,7 @@ describe("Dashbaord", () => {
     render(<Dashboard />);
 
     //checking if users page component is rendered on dashboard
-    expect(screen.getByTestId("usersPage")).toBeInTheDocument();
+    expect(screen.getByTestId("users-page")).toBeInTheDocument();
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
     expect(screen.getByTestId("header")).toBeInTheDocument();
   });

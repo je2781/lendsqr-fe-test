@@ -158,7 +158,7 @@ export function articleHeaderTemplate(
       className={`${width} cursor-pointer`}
       onClick={filterUsers}
       id="toggle-settings"
-      data-testid='filterUsers'
+      data-testid='filter-users'
     >
       <div className="flex flex-row items-center gap-x-2">
         <h5>{title}</h5>

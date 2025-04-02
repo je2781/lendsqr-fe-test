@@ -40,7 +40,7 @@ describe("User details", () => {
   it("goes back to users page when back button is pressed", () => {
     render(<UserDetails userData={mockUserData.data} id={mockId}/>);
 
-    const backButton = screen.getByTestId("goBack");
+    const backButton = screen.getByTestId("go-back");
 
     fireEvent.click(backButton);
 
