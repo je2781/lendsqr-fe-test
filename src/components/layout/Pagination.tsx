@@ -95,7 +95,6 @@ export default function Pagination({
               //updating user and page data
               setCurrentUsers(visibleUsers);
               setCurrentPage((prev: number) => prev - 1);
-              setCount(visibleUsers.length);
               setMax(visibleUsers.length);
             }}
             className="cursor-pointer bg-primary-500/5 rounded-sm w-fit h-fit py-[2px] px-2"

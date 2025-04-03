@@ -14,8 +14,27 @@ describe("Pagination Component", () => {
 
   beforeEach(() => {
     // Create mock functions
-    setCount = jest.fn();
-    setCurrentPage = jest.fn();
+    setCount = jest.fn((count, max, min) => {
+      if (count <= max) {
+        return Math.min(count + 1, max);
+      }
+      if (count >= min) {
+        return Math.max(count - 1, min);
+      }
+      return count; // Return the count if it is outside of min/max range
+    });
+
+    setCurrentPage = jest.fn((currentPage, action) => {
+      switch (action) {
+        case 'increment':
+          return currentPage + 1;
+        case 'decrement':
+          return currentPage - 1;
+        default:
+          return currentPage;
+      }
+    });
+
     setCurrentUsers = jest.fn();
   });
 
@@ -55,12 +74,16 @@ describe("Pagination Component", () => {
 
     // Click the next page button
     act(() => {
-        fireEvent.click(screen.getByRole("button", { name: /next/i }));
-      });
+      fireEvent.click(screen.getByRole("button", { name: /next/i }));
+    });
 
     // Verify that setCurrentPage and setCurrentUsers were called
     expect(setCurrentPage).toHaveBeenCalledTimes(1);
-    // expect(setCurrentPage).toHaveBeenCalledWith(2);
+    expect(setCurrentPage).toHaveBeenCalledWith(expect.any(Function)); // Check it was called with a function
+
+    // Get the function that was passed to setCurrentPage and call it
+    const updaterFunction = setCurrentPage.mock.calls[0][0]; // Get the first argument of the first call
+    expect(updaterFunction(1)).toBe(2); // If currentPage was 1, it should return 2
     expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(10, 20)); // Users for the next page
   });
 
@@ -80,12 +103,16 @@ describe("Pagination Component", () => {
 
     // Click the previous page 
     act(() => {
-        fireEvent.click(screen.getByRole("button", { name: /previous/i }));
-      });
+      fireEvent.click(screen.getByRole("button", { name: /previous/i }));
+    });
 
     // Verify that setCurrentPage and setCurrentUsers were called
     expect(setCurrentPage).toHaveBeenCalledTimes(1);
-    // expect(setCurrentPage).toHaveBeenCalledWith(1);
+    expect(setCurrentPage).toHaveBeenCalledWith(expect.any(Function)); // Check it was called with a function
+
+    // Get the function that was passed to setCurrentPage and call it
+    const updaterFunction = setCurrentPage.mock.calls[0][0]; // Get the first argument of the first call
+    expect(updaterFunction(2)).toBe(1); // If currentPage was 2, it should return 1
     expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 10)); // Users for the previous page
   });
 
@@ -105,13 +132,16 @@ describe("Pagination Component", () => {
 
     // Click the up arrow
     act(() => {
-        fireEvent.click(screen.getByRole("button", { name: /up/i }));
-      });
+      fireEvent.click(screen.getByRole("button", { name: /up/i }));
+    });
 
     // Verify that setCount was called with the new count
     expect(setCount).toHaveBeenCalledTimes(1);
-    // expect(setCount).toHaveBeenCalledWith(Math.min(2, max));
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 2)); // Update user count to 2
+    expect(setCount).toHaveBeenCalledWith(expect.any(Function)); 
+
+    const updaterFunction = setCount.mock.calls[0][0]; // Get the first argument of the first call
+    expect(updaterFunction(1)).toBe(2); // If count was 1, it should return 2
+    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 2)); 
   });
 
   it("updates count when the down arrow is clicked", () => {
@@ -130,11 +160,15 @@ describe("Pagination Component", () => {
 
     // Click the down arrow
     act(() => {
-        fireEvent.click(screen.getByRole("button", { name: /down/i }));
-      });
+      fireEvent.click(screen.getByRole("button", { name: /down/i }));
+    });
+
     // Verify that setCount was called with the new count
     expect(setCount).toHaveBeenCalledTimes(1);
-    // expect(setCount).toHaveBeenCalledWith(Math.max(1, min));
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 1)); // Update user count to 1
+    expect(setCount).toHaveBeenCalledWith(expect.any(Function)); 
+
+    const updaterFunction = setCount.mock.calls[0][0]; // Get the first argument of the first call
+    expect(updaterFunction(2)).toBe(1); // If count was 2, it should return 1
+    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 1)); 
   });
 });
