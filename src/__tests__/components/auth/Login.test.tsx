@@ -1,4 +1,4 @@
-import { render} from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import Login from "../../../components/auth/Login";
 import { useRouter } from "next/navigation";
@@ -20,7 +20,7 @@ jest.mock("@/store/useAuth", () => ({
 
 // Mocking toast notifications
 jest.mock("react-hot-toast", () => ({
-  success: jest.fn(),
+  success: jest.fn((message: string, options: { duration: number }) => {}),
   error: jest.fn(),
 }));
 
@@ -65,7 +65,7 @@ describe("Login", () => {
 
     fireEvent.click(loginButton);
 
-    expect(toast.success).toHaveBeenCalledWith("Login successful!");
+    expect(toast.success).toHaveBeenCalledWith("Login successful!", {duration: 2000});
     expect(mockRouterPush).toHaveBeenCalledWith("/users");
   });
 

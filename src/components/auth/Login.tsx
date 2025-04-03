@@ -28,12 +28,15 @@ export default function Login() {
 
   async function onLogin() {
     try {
+      if(isLoading) return;
       setIsLoading(true);
       //updated auth status
       setAuthStatus(true);
 
-      toast.success("Login successful!");
       router.push(`/users`);
+      toast.success("Login successful!", {
+        duration: 2000
+      });
 
     } catch (error) {
       const e = error as Error;
