@@ -296,7 +296,7 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">CHILDREN</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.personal.dependents}
+                  {user.profile.personal.dependents ==='0' ? 'None' : user.profile.personal.dependents}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
@@ -324,13 +324,13 @@ export default function UserDetails({ userData, id }: {userData: any[], id: stri
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">EMPLOYMENT STATUS</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.history.employment_status} 
+                  {user.profile.history.employment_status[0].toUpperCase() + user.profile.history.employment_status.slice(1)} 
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
                 <h5 className="font-normal text-[12px]">SECTOR OF EMLOYMENT</h5>
                 <h4 className="font-medium text-[16px]">
-                  {user.profile.history.employment_sector}
+                  {user.profile.history.employment_sector[0].toUpperCase()+user.profile.history.employment_sector.slice(1)}
                 </h4>
               </div>
               <div className="inline-flex flex-col items-start text-primary-400 gap-y-2">
