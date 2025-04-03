@@ -70,7 +70,7 @@ describe("Users Content", () => {
     expect(optionsModal).toBeInTheDocument();
 
     const viewDetailsItem = screen.getByTestId("options-modal-view-details-item");
-    //niw click on teh vew details item
+    //now click on the view details item
     fireEvent.click(viewDetailsItem);
 
     expect(mockRouterPush).toHaveBeenCalledWith(`/users/${mockId}`);

@@ -14,26 +14,9 @@ describe("Pagination Component", () => {
 
   beforeEach(() => {
     // Create mock functions
-    setCount = jest.fn((count, max, min) => {
-      if (count <= max) {
-        return Math.min(count + 1, max);
-      }
-      if (count >= min) {
-        return Math.max(count - 1, min);
-      }
-      return count; // Return the count if it is outside of min/max range
-    });
+    setCount = jest.fn();
 
-    setCurrentPage = jest.fn((currentPage, action) => {
-      switch (action) {
-        case 'increment':
-          return currentPage + 1;
-        case 'decrement':
-          return currentPage - 1;
-        default:
-          return currentPage;
-      }
-    });
+    setCurrentPage = jest.fn();
 
     setCurrentUsers = jest.fn();
   });
