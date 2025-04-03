@@ -32,6 +32,7 @@ describe("Sidebar", () => {
 
   it("navigates to route of clicked item", async () => {
     render(<Sidebar activeSection="customers"/>);
+       //retrieves list item with h4 text 'Users'
         const usersItem = screen.getByText(/users/i).closest('li');
 
         fireEvent.click(usersItem!);
