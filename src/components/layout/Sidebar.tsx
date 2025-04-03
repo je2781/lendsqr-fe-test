@@ -14,7 +14,7 @@ const router = useRouter();
       <ul
         className={`inline-flex items-start flex-col w-full font-sans font-normal gap-y-8`}
       >
-        {SideBarList(router, 'pl-10', activeSection)}
+        {SideBarList(router, 'pl-8', activeSection)}
       </ul>
     </nav>
   );

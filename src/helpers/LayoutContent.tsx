@@ -67,6 +67,7 @@ export function SideBarList(
                       return (
                         <li
                           key={nestedIndex}
+                          data-testid='sidebar-item'
                           className={`w-full cursor-pointer flex flex-row items-center group`}
                           onClick={() =>
                             router.push(
