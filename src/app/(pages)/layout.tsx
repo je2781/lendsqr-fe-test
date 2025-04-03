@@ -4,7 +4,7 @@ import { AuthContextProvider } from "@/store/authContext";
 import entries from "../../../public/entries.json";
 import React from "react";
 
-export default function RootLayout({
+export default function PagesRootLayout({
   children,
 }: {
   children: React.ReactNode;

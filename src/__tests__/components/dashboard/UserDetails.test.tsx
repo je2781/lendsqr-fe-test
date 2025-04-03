@@ -3,7 +3,7 @@ import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
 import mockUserData from './mockData.json'; 
 
-import UserDetails from "@/components/dashboard/UserDetails";
+import UserDetails from "../../../components/dashboard/UserDetails";
 
 // Mocking useRouter
 jest.mock("next/navigation", () => ({

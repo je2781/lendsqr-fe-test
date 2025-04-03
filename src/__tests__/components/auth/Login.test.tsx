@@ -1,6 +1,6 @@
 import { render} from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
-import Login from "@/components/auth/Login";
+import Login from "../../../components/auth/Login";
 import { useRouter } from "next/navigation";
 import userEvent from "@testing-library/user-event";
 import toast from "react-hot-toast";

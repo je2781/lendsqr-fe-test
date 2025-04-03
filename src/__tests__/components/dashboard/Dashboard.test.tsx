@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { screen} from "@testing-library/dom";
 import { usePathname } from "next/navigation";
-import Dashboard from "@/components/dashboard/Dashboard";
+import Dashboard from "../../../components/dashboard/Dashboard";
 
 // Mock the pathName
 jest.mock("next/navigation", () => ({

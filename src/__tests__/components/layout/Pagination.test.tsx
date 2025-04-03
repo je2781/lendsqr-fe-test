@@ -1,5 +1,5 @@
 // Pagination.test.tsx
-import Pagination from "@/components/layout/Pagination";
+import Pagination from "../../../components/layout/Pagination";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 
 describe("Pagination Component", () => {

@@ -1,7 +1,7 @@
 import { render} from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/layout/Sidebar";
+import Sidebar from "../../../components/layout/Sidebar";
 
 // Mocking useRouter
 jest.mock("next/navigation", () => ({

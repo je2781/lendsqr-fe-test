@@ -2,7 +2,8 @@ import { render } from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
 import mockUserData from "./mockData.json";
-import UsersContent from "@/components/dashboard/UsersContent";
+import UsersContent from "../../../components/dashboard/UsersContent";
+import { OptionsModal } from "@/components/layout/Modal";
 
 const mockId = "LSQFf587g90";
 
@@ -25,15 +26,12 @@ jest.mock("@/helpers/getWindowWidth", () => ({
 
 // Mock the modal
 jest.mock("../../../components/layout/Modal", () => ({
-  FilterModal: () => <div data-testid="filter-modal">Modal</div>,
-  OptionsModal: () => (
-    <div data-testid="options-modal">
-      <button
-        data-testid="options-modal-view-details-item"
-        onClick={() => mockRouterPush(`/users/${mockId}`)}
-      ></button>
-    </div>
-  ),
+  FilterModal: jest.fn(() => <div data-testid="filter-modal"></div>),
+  OptionsModal: jest.fn(() => <div data-testid="options-modal">
+    <button onClick={() => mockRouterPush(`/users/${mockId}`)}>
+      <h4>View Details</h4>
+    </button>
+  </div>),
 }));
 
 describe("Users Content", () => {
@@ -66,12 +64,12 @@ describe("Users Content", () => {
     fireEvent.click(openOptionsIcons[0]);
 
     //expect options modal to appear
-    const optionsModal = screen.getByTestId("options-modal");
+    const optionsModal = screen.getByText(/view details/i);
     expect(optionsModal).toBeInTheDocument();
 
-    const viewDetailsItem = screen.getByTestId("options-modal-view-details-item");
-    //now click on the view details item
-    fireEvent.click(viewDetailsItem);
+    const viewDetailsItem = optionsModal.closest("button");
+    //now click on the vew details item
+    fireEvent.click(viewDetailsItem!);
 
     expect(mockRouterPush).toHaveBeenCalledWith(`/users/${mockId}`);
   });

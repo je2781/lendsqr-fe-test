@@ -27,9 +27,9 @@ export default function RootLayout({
         className={`antialiased ${avenirNextLTPro.variable} ${sfCompactText.variable} ${roboto.className}`}
       > 
           <div id='mobile-modal'></div>
-          <div id='options-modal'></div>
+          <div id='options-modal' data-testid='options-modal'></div>
           <div id='details-tab-modal'></div>
-          <div id='filter-modal'></div>
+          <div id='filter-modal' data-testid='filter-modal'></div>
           <div id='backdrop-root'></div>
         <Toaster position="bottom-center" />
         {children}

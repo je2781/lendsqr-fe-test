@@ -1,6 +1,6 @@
 import { render} from "@testing-library/react";
 import { screen} from "@testing-library/dom";
-import Splash from "@/components/auth/Splash";
+import Splash from "../../../components/auth/Splash";
 
 
 // Mock the Logo component
