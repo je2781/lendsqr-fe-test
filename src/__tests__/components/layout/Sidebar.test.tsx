@@ -1,8 +1,6 @@
 import { render} from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
-import userEvent from "@testing-library/user-event";
-import toast from "react-hot-toast";
 import Sidebar from "@/components/layout/Sidebar";
 
 // Mocking useRouter
