@@ -3,7 +3,6 @@ import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
 import mockUserData from "./mockData.json";
 import UsersContent from "../../../components/dashboard/UsersContent";
-import { OptionsModal } from "@/components/layout/Modal";
 
 const mockId = "LSQFf587g90";
 
