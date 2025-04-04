@@ -18,8 +18,8 @@ jest.mock("@/store/useAuth", () => ({
 
 
 describe("Sidebar", () => {
-  let mockRouterPush  = jest.fn();
-  let mockRouterReplace  = jest.fn();
+  const mockRouterPush  = jest.fn();
+  const mockRouterReplace  = jest.fn();
 
   beforeAll(() => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush, replace: mockRouterReplace });
@@ -51,7 +51,7 @@ describe("Sidebar", () => {
 
   it("navigates to login route when logout button is clicked", async () => {
     render(<Sidebar activeSection="customers"/>);
-       //retrieves list item with h4 text 'Users'
+       //retrieves list item with h4 text 'Logout'
         const logout = screen.getByText(/logout/i).closest('li');
 
         fireEvent.click(logout!);
