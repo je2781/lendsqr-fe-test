@@ -14,10 +14,8 @@ export default function Home() {
   }
 
   React.useEffect(() => {
-    if (!userDataIsAvailable) {
-      router.replace("/login");
-    }
-  }, [userDataIsAvailable]);
+    router.replace("/login");
+  }, []);
 
   // Prevent rendering until authentication is confirmed
   if (!userDataIsAvailable){
@@ -31,8 +29,9 @@ export default function Home() {
         </div>
       </div>
     );
+  }else{
+    return null;
   }
     
 
-  return <Dashboard />;
 }
