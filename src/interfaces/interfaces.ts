@@ -5,7 +5,7 @@ export interface PaginationProps {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalItems: number;
-  setCurrentUsers: React.Dispatch<React.SetStateAction<any[]>>;
+  setVisibleUsers: React.Dispatch<React.SetStateAction<any[]>>;
   totalUsers: any[];
 }
 

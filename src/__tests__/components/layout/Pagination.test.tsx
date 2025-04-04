@@ -5,7 +5,7 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 describe("Pagination Component", () => {
   let setCount: jest.Mock;
   let setCurrentPage: jest.Mock;
-  let setCurrentUsers: jest.Mock;
+  let setVisibleUsers: jest.Mock;
 
   const totalUsers = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
@@ -18,7 +18,7 @@ describe("Pagination Component", () => {
 
     setCurrentPage = jest.fn();
 
-    setCurrentUsers = jest.fn();
+    setVisibleUsers = jest.fn();
   });
 
   it("renders the pagination component with correct initial state", () => {
@@ -30,7 +30,7 @@ describe("Pagination Component", () => {
         currentPage={1}
         setCurrentPage={setCurrentPage}
         totalItems={totalUsers.length}
-        setCurrentUsers={setCurrentUsers}
+        setVisibleUsers={setVisibleUsers}
         totalUsers={totalUsers}
       />
     );
@@ -50,7 +50,7 @@ describe("Pagination Component", () => {
         currentPage={1}
         setCurrentPage={setCurrentPage}
         totalItems={totalUsers.length}
-        setCurrentUsers={setCurrentUsers}
+        setVisibleUsers={setVisibleUsers}
         totalUsers={totalUsers}
       />
     );
@@ -60,13 +60,13 @@ describe("Pagination Component", () => {
       fireEvent.click(screen.getByRole("button", { name: /next/i }));
     });
 
-    // Verify that setCurrentPage and setCurrentUsers were called
+    // Verify that setCurrentPage and setVisibleUsers were called
     expect(setCurrentPage).toHaveBeenCalledTimes(1);
     expect(setCurrentPage).toHaveBeenCalledWith(expect.any(Function)); // Check it was called with a function
 
     const updaterFunction = setCurrentPage.mock.calls[0][0]; // Get the first argument of the first call
     expect(updaterFunction(1)).toBe(2); // If currentPage was 1, it should return 2
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(10, 20)); // Users for the next page
+    expect(setVisibleUsers).toHaveBeenCalledWith(totalUsers.slice(10, 20)); // Users for the next page
   });
 
   it("updates users when the previous page button is clicked", () => {
@@ -78,7 +78,7 @@ describe("Pagination Component", () => {
         currentPage={2}
         setCurrentPage={setCurrentPage}
         totalItems={totalUsers.length}
-        setCurrentUsers={setCurrentUsers}
+        setVisibleUsers={setVisibleUsers}
         totalUsers={totalUsers}
       />
     );
@@ -88,13 +88,13 @@ describe("Pagination Component", () => {
       fireEvent.click(screen.getByRole("button", { name: /previous/i }));
     });
 
-    // Verify that setCurrentPage and setCurrentUsers were called
+    // Verify that setCurrentPage and setVisibleUsers were called
     expect(setCurrentPage).toHaveBeenCalledTimes(1);
     expect(setCurrentPage).toHaveBeenCalledWith(expect.any(Function)); // Check it was called with a function
 
     const updaterFunction = setCurrentPage.mock.calls[0][0]; // Get the first argument of the first call
     expect(updaterFunction(2)).toBe(1); // If currentPage was 2, it should return 1
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 10)); // Users for the previous page
+    expect(setVisibleUsers).toHaveBeenCalledWith(totalUsers.slice(0, 10)); // Users for the previous page
   });
 
   it("updates count when the up arrow is clicked", () => {
@@ -106,7 +106,7 @@ describe("Pagination Component", () => {
         currentPage={1}
         setCurrentPage={setCurrentPage}
         totalItems={totalUsers.length}
-        setCurrentUsers={setCurrentUsers}
+        setVisibleUsers={setVisibleUsers}
         totalUsers={totalUsers}
       />
     );
@@ -122,7 +122,7 @@ describe("Pagination Component", () => {
 
     const updaterFunction = setCount.mock.calls[0][0]; // Get the first argument of the first call
     expect(updaterFunction(1)).toBe(2); // If count was 1, it should return 2
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 2)); // Users for the current page
+    expect(setVisibleUsers).toHaveBeenCalledWith(totalUsers.slice(0, 2)); // Users for the current page
   });
 
   it("updates count when the down arrow is clicked", () => {
@@ -134,7 +134,7 @@ describe("Pagination Component", () => {
         currentPage={1}
         setCurrentPage={setCurrentPage}
         totalItems={totalUsers.length}
-        setCurrentUsers={setCurrentUsers}
+        setVisibleUsers={setVisibleUsers}
         totalUsers={totalUsers}
       />
     );
@@ -150,6 +150,6 @@ describe("Pagination Component", () => {
 
     const updaterFunction = setCount.mock.calls[0][0]; // Get the first argument of the first call
     expect(updaterFunction(2)).toBe(1); // If count was 2, it should return 1
-    expect(setCurrentUsers).toHaveBeenCalledWith(totalUsers.slice(0, 1)); // Users for the current page
+    expect(setVisibleUsers).toHaveBeenCalledWith(totalUsers.slice(0, 1)); // Users for the current page
   });
 });

@@ -26,8 +26,9 @@ export default function UsersContent({ data }: any) {
 
   //limiting the max number of items shown per page
   const ITEMS_PER_PAGE = 9;
+  const noOfUsers = data.userData.length;
   const [count, setCount] = React.useState<number>(ITEMS_PER_PAGE);
-  const [currentUsers, setCurrentUsers] = React.useState<Array<any>>(
+  const [visibleUsers, setVisibleUsers] = React.useState<Array<any>>(
     data.userData.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       ITEMS_PER_PAGE * currentPage
@@ -40,7 +41,7 @@ export default function UsersContent({ data }: any) {
   const usersWithSavings: number[] = [];
 
   //extracting data from api
-  for (const user of currentUsers) {
+  for (const user of data.userData) {
     if (user.profile.status === "active") {
       activeUsers.push(user.profile.status);
     }
@@ -136,7 +137,7 @@ export default function UsersContent({ data }: any) {
             USERS
           </h4>
           <h3 className="font-sans font-semibold text-primary-500 text-lg">
-            {count.toLocaleString()}
+            {noOfUsers.toLocaleString()}
           </h3>
         </article>
         <article className="w-[240px] flex flex-col items-start gap-y-4 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
@@ -184,7 +185,7 @@ export default function UsersContent({ data }: any) {
               USERS
             </h4>
             <h3 className="font-sans font-semibold text-primary-500 text-lg">
-              {count.toLocaleString()}
+              {noOfUsers.toLocaleString()}
             </h3>
           </article>
           <article className="w-[50%] flex flex-col items-start gap-y-4 px-6 py-4 h-[140px] bg-white border border-primary-500/6 rounded-sm shadow-md">
@@ -262,7 +263,7 @@ export default function UsersContent({ data }: any) {
             </ul>
           </header>
           <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
-            {currentUsers.map((user, i, array) => {
+            {visibleUsers.map((user, i, array) => {
               return (
                 <div key={i}>
                   <ul
@@ -397,7 +398,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w- text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -428,7 +429,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w- text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -459,7 +460,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -492,7 +493,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -525,7 +526,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -567,7 +568,7 @@ export default function UsersContent({ data }: any) {
                   </ul>
                 </header>
                 <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
-                  {currentUsers.map((user, i, array) => {
+                  {visibleUsers.map((user, i, array) => {
                     return (
                       <ul
                         key={i}
@@ -631,7 +632,7 @@ export default function UsersContent({ data }: any) {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalItems={data.userData.length}
-          setCurrentUsers={setCurrentUsers}
+          setVisibleUsers={setVisibleUsers}
           setCount={setCount}
           totalUsers={data.userData}
         />

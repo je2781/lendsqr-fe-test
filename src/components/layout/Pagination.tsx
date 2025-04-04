@@ -10,7 +10,7 @@ export default function Pagination({
   currentPage,
   setCurrentPage,
   totalItems,
-  setCurrentUsers,
+  setVisibleUsers,
   totalUsers,
 }: PaginationProps) {
   //setting limits to items shown
@@ -40,7 +40,7 @@ export default function Pagination({
                 const newNumber = Number(value);
                 if (newNumber >= min && newNumber <= max) {
                   //updating user data
-                  setCurrentUsers(totalUsers.slice(0, newNumber));
+                  setVisibleUsers(totalUsers.slice(0, newNumber));
 
                   setCount(newNumber);
                 }
@@ -55,7 +55,7 @@ export default function Pagination({
                 if (count <= max) {
                   //updating user data
 
-                  setCurrentUsers(
+                  setVisibleUsers(
                     totalUsers.slice(0, Math.min(count + 1, max))
                   );
                   setCount((prev: number) => Math.min(prev + 1, max));
@@ -70,7 +70,7 @@ export default function Pagination({
                 if (count >= min) {
                   //updating user data
 
-                  setCurrentUsers(
+                  setVisibleUsers(
                     totalUsers.slice(0, Math.max(count - 1, min))
                   );
                   setCount((prev: number) => Math.max(prev - 1, min));
@@ -93,7 +93,7 @@ export default function Pagination({
                 itemsPerPage * (currentPage - 1)
               );
               //updating user and page data
-              setCurrentUsers(visibleUsers);
+              setVisibleUsers(visibleUsers);
               setCurrentPage((prev: number) => prev - 1);
               setMax(visibleUsers.length);
             }}
@@ -162,7 +162,7 @@ export default function Pagination({
                 itemsPerPage * (currentPage + 1)
               );
               //updating user and page data
-              setCurrentUsers(visibleUsers);
+              setVisibleUsers(visibleUsers);
               setCurrentPage((prev: number) => prev + 1);
               setCount(visibleUsers.length);
               setMax(visibleUsers.length);
