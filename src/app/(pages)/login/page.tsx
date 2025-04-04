@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [loginScreen, setLoginScreen] = React.useState(
     userDataIsAvailable ? <Login /> : <SplashScreen />
   );
-  let timeoutId: NodeJS.Timeout | null;
+  let timeoutId: NodeJS.Timeout | null = null;
 
   React.useEffect(() => {
     if(!userDataIsAvailable){
