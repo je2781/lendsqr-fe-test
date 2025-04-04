@@ -20,7 +20,7 @@ jest.mock("@/store/useAuth", () => ({
 
 // Mocking toast notifications
 jest.mock("react-hot-toast", () => ({
-  success: jest.fn((message: string, options: { duration: number }) => {}),
+  success: jest.fn(),
   error: jest.fn(),
 }));
 
