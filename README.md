@@ -3,7 +3,7 @@ title: Lendsqr
 description: lending app
 author: Joshua Eze
 created:  2025 Mar 29
-updated: 2025 Apr 2
+updated: 2025 Apr 3
 ---
 
 Lendsqr
