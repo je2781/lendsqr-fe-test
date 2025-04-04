@@ -23,7 +23,6 @@ export default function UsersContent({ data }: any) {
 
   //limiting the max number of items shown per page
   const ITEMS_PER_PAGE = 9;
-  const noOfUsers = data.userData.length;
   const [count, setCount] = React.useState<number>(ITEMS_PER_PAGE);
   const [visibleUsers, setVisibleUsers] = React.useState<Array<any>>(
     data.userData.slice(
@@ -134,7 +133,7 @@ export default function UsersContent({ data }: any) {
             USERS
           </h4>
           <h3 className="font-sans font-semibold text-primary-500 text-lg">
-            {noOfUsers.toLocaleString()}
+            {data.userData.length.toLocaleString()}
           </h3>
         </article>
         <article className="w-[240px] flex flex-col items-start gap-y-4 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
@@ -182,7 +181,7 @@ export default function UsersContent({ data }: any) {
               USERS
             </h4>
             <h3 className="font-sans font-semibold text-primary-500 text-lg">
-              {noOfUsers.toLocaleString()}
+              {data.userData.length.toLocaleString()}
             </h3>
           </article>
           <article className="w-[50%] flex flex-col items-start gap-y-4 px-6 py-4 h-[140px] bg-white border border-primary-500/6 rounded-sm shadow-md">

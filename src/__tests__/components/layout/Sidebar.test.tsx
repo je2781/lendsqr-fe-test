@@ -8,14 +8,6 @@ jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-// Mocking useAuth
-jest.mock("@/store/useAuth", () => ({
-  __esModule: true,
-  default: () => ({
-    setAuthStatus: jest.fn(),
-  }),
-}));
-
 
 describe("Sidebar", () => {
   const mockRouterPush  = jest.fn();

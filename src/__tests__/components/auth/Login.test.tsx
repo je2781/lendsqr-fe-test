@@ -10,14 +10,6 @@ jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-// Mocking useAuth
-jest.mock("@/store/useAuth", () => ({
-  __esModule: true,
-  default: () => ({
-    setAuthStatus: jest.fn(),
-  }),
-}));
-
 // Mocking toast notifications
 jest.mock("react-hot-toast", () => ({
   success: jest.fn(),

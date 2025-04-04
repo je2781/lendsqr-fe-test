@@ -11,8 +11,6 @@ export function SideBarList(
   paddingLeft: string,
   selectedSection: string
 ) {
-  const {setAuthStatus} = useAuth();
-
   return (
     <ul className="flex flex-col gap-y-9 w-full">
       {dashboardItems.map((item, i, items) => {
