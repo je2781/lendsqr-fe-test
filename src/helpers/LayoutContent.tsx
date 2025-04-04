@@ -36,7 +36,7 @@ export function SideBarList(
             <li
               key={i}
               onClick={() => {
-                if(i === items.length - 1 &&  typeof window !== 'undefined'){
+                if(i === items.length - 1){
                   setAuthStatus(false);
                   router.replace('/login');
                 }
