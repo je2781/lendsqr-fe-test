@@ -8,7 +8,5 @@ export default function PagesRootLayout({
   children: React.ReactNode;
 }) {
 
-  return (
-      {children}
-  );
+  return children;
 }

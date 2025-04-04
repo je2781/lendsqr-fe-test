@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import entries from '../../../public/entries.json';
 
 export default function Login() {
   const [user, setUser] = React.useState({
@@ -16,6 +17,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
 
+  let userDataIsAvailable = false;
+
   useEffect(() => {
     if (user.email.includes("@") && user.password.length > 0) {
       setButtonDisabled(false);
@@ -26,20 +29,26 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      if(isLoading) return;
+      //checking if there is mock data to use to populate the UI
+      if (typeof window !== "undefined") {
+        userDataIsAvailable = !!window.localStorage.getItem("users");
+        if (!userDataIsAvailable){
+          window.localStorage.setItem('users', JSON.stringify(entries));
+        }
+      }
+
       setIsLoading(true);
 
-      router.push(`/users`);
       toast.success("Login successful!", {
-        duration: 2000
+        duration: 2000,
       });
-
     } catch (error) {
       const e = error as Error;
       setIsLoading(false);
       return toast.error(e.message);
     } finally {
       setIsLoading(false);
+      router.push(`/users`);
     }
   }
 
@@ -53,7 +62,9 @@ export default function Login() {
         className="flex flex-col gap-y-6 bg-transparent lg:w-[447px] w-full lg:items-start items-center"
       >
         <header className="mb-4">
-          <h1 className={`text-primary-500 font-bold lg:text-4xl text-3xl lg:text-start text-center`}>
+          <h1
+            className={`text-primary-500 font-bold lg:text-4xl text-3xl lg:text-start text-center`}
+          >
             Welcome&#33;
           </h1>
           <h3
