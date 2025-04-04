@@ -38,7 +38,6 @@ export function SideBarList(
               onClick={() => {
                 if(i === items.length - 1 &&  typeof window !== 'undefined'){
                   setAuthStatus(false);
-                  window.localStorage.removeItem('users');
                   router.replace('/login');
                 }
               }}

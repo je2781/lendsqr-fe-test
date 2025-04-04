@@ -1,23 +1,30 @@
-'use client';
-
+"use client";
 
 import Login from "@/components/auth/Login";
 import SplashScreen from "@/components/auth/Splash";
 import React from "react";
 
-
-
 export default function LoginPage() {
-  const [loginScreen, setLoginScreen] = React.useState(<SplashScreen/>);
+  const userDataIsAvailable = !!window.localStorage.getItem("users");
+  const [loginScreen, setLoginScreen] = React.useState(
+    userDataIsAvailable ? <Login /> : <SplashScreen />
+  );
+  let timeoutId: NodeJS.Timeout | null;
 
   React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setLoginScreen(<Login />);
-    }, 2000);
+    if(!userDataIsAvailable){
 
+      timeoutId = setTimeout(() => {
+        setLoginScreen(<Login />);
+      }, 2000);
+  
+    }
     // Cleanup function to clear the timeout if the component unmounts or before the next effect runs
     return () => {
-      clearTimeout(timeoutId);
+      if(timeoutId){
+
+        clearTimeout(timeoutId);
+      }
     };
   }, []);
 
