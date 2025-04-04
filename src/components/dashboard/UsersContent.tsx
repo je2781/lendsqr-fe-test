@@ -7,12 +7,9 @@ import { useRouter } from "next/navigation";
 import useWindowWidth from "@/helpers/getWindowWidth";
 import { FilterModal, OptionsModal } from "../layout/Modal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Navigation } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 export default function UsersContent({ data }: any) {
   const [currentPage, setCurrentPage] = React.useState(1);

@@ -1,10 +1,20 @@
 import { render } from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
-import mockUserData from "./mockData.json";
+import mockUserData from "../../../__mocks__/mockData.json";
 import UsersContent from "../../../components/dashboard/UsersContent";
 
 const mockId = "LSQFf587g90";
+
+jest.mock('swiper/react', () => ({
+  Swiper : ({ children }: { children: React.ReactNode }) => {
+    return <div data-testid="mock-swiper">{children}</div>;
+  }
+  ,
+  SwiperSlide : ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-swiper-slide">{children}</div>
+  )
+}));
 
 // Mocking useRouter
 jest.mock("next/navigation", () => ({
@@ -49,6 +59,9 @@ describe("Users Content", () => {
     expect(screen.getAllByText("USERS WITH LOANS").length).toBeGreaterThan(0);
     expect(screen.getAllByText("USERS WITH SAVINGS").length).toBeGreaterThan(0);
     expect(screen.getAllByTestId("filter-users").length).toBeGreaterThan(0);
+
+    expect(screen.getByTestId('mock-swiper')).toBeInTheDocument();
+    expect(screen.getAllByTestId('mock-swiper-slide').length).toBeGreaterThan(0);
   });
 
   it("navigates to user details page when view details on options modal is clicked", () => {

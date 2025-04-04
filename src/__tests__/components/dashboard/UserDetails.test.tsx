@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { screen, fireEvent } from "@testing-library/dom";
 import { useRouter } from "next/navigation";
-import mockUserData from './mockData.json'; 
+import mockUserData from "../../../__mocks__/mockData.json";
 
 import UserDetails from "../../../components/dashboard/UserDetails";
 
