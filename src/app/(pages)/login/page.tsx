@@ -12,7 +12,7 @@ export default function LoginPage() {
   if (typeof window !== "undefined") {
     userDataIsAvailable = !!window.localStorage.getItem("users");
   }
-  
+
   const [loginScreen, setLoginScreen] = React.useState(
     userDataIsAvailable ? <Login /> : <SplashScreen />
   );
@@ -33,7 +33,7 @@ export default function LoginPage() {
         clearTimeout(timeoutId);
       }
     };
-  }, []);
+  }, [userDataIsAvailable]);
 
   return loginScreen;
 }

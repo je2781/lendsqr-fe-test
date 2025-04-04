@@ -9,11 +9,17 @@ export default function Home() {
   const { authStatus } = useAuth();
   const router = useRouter();
 
+  let userDataIsAvailable = false;
+
+  if (typeof window !== "undefined") {
+    userDataIsAvailable = !!window.localStorage.getItem("users");
+  }
+
   React.useEffect(() => {
-    if (!authStatus) {
+    if (!userDataIsAvailable) {
       router.replace("/login");
     }
-  }, [authStatus]);
+  }, [userDataIsAvailable]);
 
   // Prevent rendering until authentication is confirmed
   if (!authStatus){

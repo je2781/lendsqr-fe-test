@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import useAuth from "@/store/useAuth";
 
 export default function Login() {
   const [user, setUser] = React.useState({
@@ -16,7 +15,6 @@ export default function Login() {
   const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
-  const {setAuthStatus} = useAuth();
 
   useEffect(() => {
     if (user.email.includes("@") && user.password.length > 0) {
@@ -30,8 +28,6 @@ export default function Login() {
     try {
       if(isLoading) return;
       setIsLoading(true);
-      //updated auth status
-      setAuthStatus(true);
 
       router.push(`/users`);
       toast.success("Login successful!", {

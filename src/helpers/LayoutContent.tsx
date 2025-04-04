@@ -37,7 +37,6 @@ export function SideBarList(
               key={i}
               onClick={() => {
                 if(i === items.length - 1){
-                  setAuthStatus(false);
                   router.replace('/login');
                 }
               }}

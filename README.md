@@ -10,7 +10,7 @@ Lendsqr
 =========
 
 ## development
-I started with the project structure, and moved the routes into the (pages) folder to allow for a global state provider controlling authentication. As this is a limited implementation of a fullsatck app, the global state is used to reset the route stack.
+I started with the project structure, and moved the routes into the (pages) folder. Authentication followed, with storing mock data in the login page. I later onto the users page, with all its components, while doing its responsiveness. Finally worked on the user details page, with responsive as well.
 
 ## testing
 Unit tests were done on all the page components, excluding UI components.
