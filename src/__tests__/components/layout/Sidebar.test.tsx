@@ -8,13 +8,21 @@ jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
+// Mocking useAuth
+jest.mock("@/store/useAuth", () => ({
+  __esModule: true,
+  default: () => ({
+    setAuthStatus: jest.fn(),
+  }),
+}));
+
 
 describe("Sidebar", () => {
-  let mockRouterPush: jest.Mock;
+  let mockRouterPush  = jest.fn();
+  let mockRouterReplace  = jest.fn();
 
-  beforeEach(() => {
-    mockRouterPush = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush });
+  beforeAll(() => {
+    (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush, replace: mockRouterReplace });
   });
 
   it("renders the Sidebar list", () => {
@@ -38,6 +46,19 @@ describe("Sidebar", () => {
         expect(mockRouterPush).toHaveBeenCalledWith("/users");
     
         expect(usersItem).toBeInTheDocument(); 
+
+  });
+
+  it("navigates to login route when logout button is clicked", async () => {
+    render(<Sidebar activeSection="customers"/>);
+       //retrieves list item with h4 text 'Users'
+        const logout = screen.getByText(/logout/i).closest('li');
+
+        fireEvent.click(logout!);
+    
+        expect(logout).toBeInTheDocument(); 
+        expect(mockRouterReplace).toHaveBeenCalledWith("/login");
+    
 
   });
 });

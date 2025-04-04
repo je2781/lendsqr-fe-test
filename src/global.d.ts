@@ -1,5 +1,4 @@
-interface Window {
-    checkout: (callback: (response: any) => Promise<void>, path: string) => void;
+export interface Window {
     localeStorage: {
       getItem: (key: string) => void,
       setItem: (key: string, value: string) => void,

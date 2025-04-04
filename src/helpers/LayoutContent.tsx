@@ -4,12 +4,15 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import { dashboardItems } from "./helpers";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
+import useAuth from "@/store/useAuth";
 
 export function SideBarList(
   router: AppRouterInstance,
   paddingLeft: string,
   selectedSection: string
 ) {
+  const {setAuthStatus} = useAuth();
+
   return (
     <ul className="flex flex-col gap-y-9 w-full">
       {dashboardItems.map((item, i, items) => {
@@ -32,6 +35,13 @@ export function SideBarList(
           return (
             <li
               key={i}
+              onClick={() => {
+                if(i === items.length - 1 &&  typeof window !== 'undefined'){
+                  setAuthStatus(false);
+                  window.localStorage.removeItem('users');
+                  router.replace('/login');
+                }
+              }}
               className={`flex flex-row gap-x-3 items-center w-full cursor-pointer ${
                 i === items.length - 1 && Object.keys(item)[0] === "Logout"
                   ? "border border-primary-400/10 border-l-0 border-r-0 border-b-0 pt-6 mt-4"
