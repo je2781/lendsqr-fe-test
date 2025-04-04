@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-import useAuth from "@/store/useAuth";
 import { useRouter } from "next/navigation";
 import Dashboard from "@/components/dashboard/Dashboard";
 
 export default function Home() {
-  const { authStatus } = useAuth();
   const router = useRouter();
 
   let userDataIsAvailable = false;
@@ -22,7 +20,7 @@ export default function Home() {
   }, [userDataIsAvailable]);
 
   // Prevent rendering until authentication is confirmed
-  if (!authStatus){
+  if (!userDataIsAvailable){
     return (
       <div className="min-h-screen w-full flex flex-col justify-center items-center">
         <div className="flex flex-col items-center">

@@ -4,7 +4,6 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import { dashboardItems } from "./helpers";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
-import useAuth from "@/store/useAuth";
 
 export function SideBarList(
   router: AppRouterInstance,
