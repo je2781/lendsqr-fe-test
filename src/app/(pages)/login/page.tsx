@@ -5,7 +5,10 @@ import SplashScreen from "@/components/auth/Splash";
 import React from "react";
 
 export default function LoginPage() {
-  const userDataIsAvailable = !!window.localStorage.getItem("users");
+  let userDataIsAvailable = false;
+  if (typeof window !== "undefined") {
+    userDataIsAvailable = !!window.localStorage.getItem("users");
+  }
   const [loginScreen, setLoginScreen] = React.useState(
     userDataIsAvailable ? <Login /> : <SplashScreen />
   );
