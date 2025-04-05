@@ -17,15 +17,17 @@ export function SideBarList(
           return (
             <li
               key={i}
-              className={`flex flex-row gap-x-3 items-center text-primary-500 w-full cursor-pointer ${paddingLeft}`}
+              className={`flex flex-row gap-x-2 lg:gap-x-1 xl:gap-x-3 items-center text-primary-500 w-full cursor-pointer ${paddingLeft}`}
             >
-              <i
-                className={`fa-solid ${
-                  Object.values(item)[0]
-                } text-primary-500 text-lg w-[8%]`}
-              ></i>
-              <h4 className="text-[16px]">{Object.keys(item)[0]}</h4>
-              <i className="fa-solid fa-angle-down text-primary-500 text-lg"></i>
+              <div className="inline-flex flex-row gap-x-3 items-center">
+                <i
+                  className={`fa-solid ${
+                    Object.values(item)[0]
+                  } text-primary-500 xl:text-lg lg:text-[14px] w-[8%]`}
+                ></i>
+                <h4 className="text-[16px]">{Object.keys(item)[0]}</h4>
+              </div>
+              <i className="fa-solid fa-angle-down text-primary-500 xl:text-lg lg:text-[14px]"></i>
             </li>
           );
         } else if (i === 1 || i === items.length - 1) {
@@ -33,8 +35,8 @@ export function SideBarList(
             <li
               key={i}
               onClick={() => {
-                if(i === items.length - 1){
-                  router.replace('/login');
+                if (i === items.length - 1) {
+                  router.replace("/login");
                 }
               }}
               className={`flex flex-row gap-x-3 items-center w-full cursor-pointer ${
@@ -46,7 +48,7 @@ export function SideBarList(
               <i
                 className={`fa-solid ${
                   Object.values(item)[0]
-                } text-primary-500/50 text-lg w-[8%]`}
+                } text-primary-500/50 xl:text-lg lg:text-[14px] w-[8%]`}
               ></i>
               <h4 className="text-primary-500/50 w-[92%] text-[16px]">
                 {Object.keys(item)[0]}
@@ -66,35 +68,52 @@ export function SideBarList(
                 {Array.isArray(Object.values(item)[0]) &&
                   (Object.values(item)[0] as any[]).map(
                     (nestedlistItem, nestedIndex) => {
-                      const sectionKey = Object.keys(nestedlistItem)[0].replace(' ', '').toLowerCase(); // Ensure it's a valid key
+                      const sectionKey = Object.keys(nestedlistItem)[0]
+                        .replace(" ", "")
+                        .toLowerCase(); // Ensure it's a valid key
                       const isSelected = selectedSection.includes(sectionKey);
 
                       return (
                         <li
                           key={nestedIndex}
-                          data-testid='sidebar-item'
+                          data-testid="sidebar-item"
                           className={`w-full cursor-pointer flex flex-row items-center group`}
                           onClick={() =>
                             router.push(
-                              `/${
-                                
-                                Object.keys(nestedlistItem)[0].replace(' ', '').toLowerCase()
-                              }`
+                              `/${Object.keys(nestedlistItem)[0]
+                                .replace(" ", "")
+                                .toLowerCase()}`
                             )
                           }
                         >
                           <div
-                            className={`py-2 w-[1.5%] group-hover:bg-secondary-400 h-full ${isSelected ? 'bg-secondary-400' : 'bg-transparent'}`}
+                            className={`py-2 w-[1.5%] group-hover:bg-secondary-400 h-full ${
+                              isSelected ? "bg-secondary-400" : "bg-transparent"
+                            }`}
                           ></div>
                           <div
-                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px] ${isSelected ? 'bg-secondary-400/5' : 'bg-transparent'}`}
+                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px] ${
+                              isSelected
+                                ? "bg-secondary-400/5"
+                                : "bg-transparent"
+                            }`}
                           >
                             <i
                               className={`fa-solid ${
                                 Object.values(nestedlistItem)[0]
-                              } text-lg w-[8%] group-hover:text-primary-500 ${isSelected ? 'text-primary-500' : 'text-primary-500/60'}`}
+                              } xl:text-lg lg:text-[14px] w-[8%] group-hover:text-primary-500 ${
+                                isSelected
+                                  ? "text-primary-500"
+                                  : "text-primary-500/60"
+                              }`}
                             ></i>
-                            <h4 className={`w-[92%] group-hover:text-primary-500 ${isSelected ? 'text-primary-500' : 'text-primary-500/60'}`}>
+                            <h4
+                              className={`w-[92%] group-hover:text-primary-500 ${
+                                isSelected
+                                  ? "text-primary-500"
+                                  : "text-primary-500/60"
+                              }`}
+                            >
                               {Object.keys(nestedlistItem)[0]}
                             </h4>
                           </div>
@@ -127,7 +146,7 @@ export function HeaderContent(
 ) {
   return (
     <div
-      className={`lg:flex ${display} flex-row gap-x-10 lg:w-[20%] w-full items-center lg:mt- mt-2 ${flexProp} ${padding}`}
+      className={`lg:flex ${display} flex-row gap-x-10 lg:w-[20.5%] w-full items-center lg:mt- mt-2 ${flexProp} ${padding}`}
     >
       <Link
         href="/docs"
@@ -142,7 +161,7 @@ export function HeaderContent(
         Docs
       </Link>
       <div className="flex flex-row lg:gap-x-8 gap-x-4 items-center">
-        <i className="fa-regular fa-bell text-lg text-primary-500 cursor-pointer"></i>
+        <i className="fa-regular fa-bell xl:text-lg lg:text-[14px] text-primary-500 cursor-pointer"></i>
         <div className="flex flex-row gap-x-3 items-center">
           <span
             className="h-[48px] w-[48px] overflow-hidden cursor-pointer rounded-[50%] ring-2 ring-offset-1 ring-primary-500"
@@ -178,9 +197,9 @@ export function articleHeaderTemplate(
       id="toggle-settings"
       data-testid="filter-users"
     >
-      <div className="flex flex-row items-center gap-x-2">
+      <div className="flex flex-row items-center lg:gap-x-1 xl:gap-x-2 gap-x-2">
         <h5>{title}</h5>
-        <i className="fa-solid fa-filter text-primary-400"></i>
+        <i className="fa-solid fa-filter text-primary-400 xl:text-[12px] lg:text-[10px] lg:-mt-1 text-[12px] xl:m-0"></i>
       </div>
     </li>
   );

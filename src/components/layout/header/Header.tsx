@@ -61,8 +61,8 @@ export default function Header({ username, activeSection }: { username: string, 
   }, [setIsMobileModalOpen, windowWidth]);
 
   return (
-    <nav className="lg:pl-0 pl-[7%] pr-[6.5%] lg:pr-[0.25%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-20 bg-white">
-      <div className="flex flex-row gap-x-24 items-center lg:w-[54%] w-full justify-between">
+    <nav className="lg:pl-0 md:pl-[3%] pl-[5.5%] xl:pr-[1%] lg:pr-[6%] pr-[6%] md:pr-[3%] py-[0.125%] flex flex-row items-center shadow-md justify-between w-full fixed h-[100px] top-0 left-0 z-20 bg-white">
+      <div className="flex flex-row xl:gap-x-34 lg:gap-x-8 items-center xl:w-[49%] lg:w-[57%] w-full justify-between">
         <Logo reducer={1.3} />
         <SearchBar display='hidden'/>
         <span className="lg:hidden mt-3 cursor-pointer" onClick={showModalHandler} id='toggle-button'>

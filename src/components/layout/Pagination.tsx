@@ -25,7 +25,7 @@ export default function Pagination({
   const isActivePage = currentPage;
 
   return (
-    <footer className="flex lg:flex-row flex-col items-center lg:justify-between gap-y-7 lg:gap-0 w-full h-[30px] font-sans">
+    <footer className="flex lg:flex-row flex-col items-center lg:justify-between gap-y-7 lg:gap-0 xl:w-full w-fit h-[30px] font-sans">
       <div className="font-normal text-sm text-primary-500 inline-flex flex-row items-center gap-x-2 h-full">
         <h6>Showing</h6>
         <div className="inline-flex flex-row items-center gap-x-2 bg-primary-500/10 w-[60px] h-[30px] px-2 rounded-xs">

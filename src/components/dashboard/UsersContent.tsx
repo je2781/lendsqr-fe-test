@@ -119,13 +119,13 @@ export default function UsersContent({ data }: any) {
   return (
     <main
       role="main"
-      className="lg:pl-[340px] lg:pr-12 lg:pt-[165px] lg:pb-12 pb-8 pt-[145px] min-h-screen flex flex-col gap-y-8"
+      className="xl:pl-[308px] lg:pl-[258px] xl:pr-12 lg:pr-8 lg:pt-[165px] lg:pb-12 pb-8 pt-[145px] min-h-screen flex flex-col gap-y-8"
     >
       <header className="font-medium text-2xl text-primary-500 font-sans lg:p-0 pl-6">
         {data.sectionName[0].toUpperCase() + data.sectionName.slice(1)}
       </header>
-      <div className="lg:flex flex-row hidden flex-col lg:gap-x-6 gap-y-6">
-        <article className="w-[240px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
+      <div className="lg:flex flex-row hidden flex-col lg:gap-x-6 gap-y-6 xl:w-full w-fit">
+        <article className="xl:w-[240px] lg:w-[166px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
           <span className="h-[37px] w-[37px] flex items-center justify-center rounded-full bg-dashboard-users/8">
             <i className="fa-solid fa-users text-dashboard-users text-lg"></i>
           </span>
@@ -136,7 +136,7 @@ export default function UsersContent({ data }: any) {
             {data.userData.length.toLocaleString()}
           </h3>
         </article>
-        <article className="w-[240px] flex flex-col items-start gap-y-4 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
+        <article className="xl:w-[240px] lg:w-[166px] flex flex-col items-start gap-y-4 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
           <span className="h-[37px] w-[37px] flex items-center justify-center rounded-full bg-dashboard-active/8">
             <i className="fa-solid fa-users text-dashboard-active text-lg"></i>
           </span>
@@ -147,7 +147,7 @@ export default function UsersContent({ data }: any) {
             {activeUsers.length.toLocaleString()}
           </h3>
         </article>
-        <article className="w-[240px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
+        <article className="xl:w-[240px] lg:w-[166px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
           <span className="h-[37px] w-[37px] flex items-center justify-center rounded-full bg-dashboard-loans/8">
             <i className="fa-solid fa-file-invoice text-dashboard-loans text-lg"></i>
           </span>
@@ -158,7 +158,7 @@ export default function UsersContent({ data }: any) {
             {usersWithLoans.length.toLocaleString()}
           </h3>
         </article>
-        <article className="w-[240px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
+        <article className="xl:w-[240px] lg:w-[166px] flex flex-col items-start gap-y-3 px-6 py-4 h-[160px] bg-white border border-primary-500/6 rounded-sm shadow-md">
           <span className="h-[37px] w-[37px] flex items-center justify-center rounded-full bg-dashboard-savings/8">
             <i className="fa-solid fa-coins text-dashboard-savings text-lg"></i>
           </span>
@@ -222,10 +222,10 @@ export default function UsersContent({ data }: any) {
         </div>
       </div>
       {/*   template for small screens   */}
-      <div className="flex flex-col gap-y-6  px-6 pb-14 lg:p-0">
-        <article className="bg-white font-sans lg:flex hidden flex-col gap-y-3 p-6 border border-primary-500/6 rounded-sm shadow-md w-[962px] h-[640px]">
+      <div className="flex flex-col gap-y-6 px-6 pb-14 lg:p-0">
+        <article className="bg-white font-sans lg:flex hidden flex-col gap-y-3 xl:p-6 p-6 lg:pl-5 border border-primary-500/6 rounded-sm shadow-md xl:w-full w-fit lg:w-[736px] h-fit">
           <header className="w-full">
-            <ul className="flex flex-row gap-x-4 font-semibold text-[12px] w-full text-primary-400">
+            <ul className="flex flex-row gap-x-4 font-semibold text-[12px] lg:text-[10px] xl:text-[12px] w-full text-primary-400">
               {articleHeaderTemplate(
                 "w-[16%]",
                 "ORGANIZATION",
@@ -258,7 +258,7 @@ export default function UsersContent({ data }: any) {
               )}
             </ul>
           </header>
-          <ul className="flex flex-col font-normal text-[14px] w-full text-primary-500">
+          <ul className="flex flex-col font-normal text-[14px] lg:text-[12px] xl:text-[14px] w-full text-primary-500">
             {visibleUsers.map((user, i, array) => {
               return (
                 <div key={i}>
@@ -300,9 +300,9 @@ export default function UsersContent({ data }: any) {
                       </h5>
                     </li>
                     <li className="w-[15%]">
-                      <div className="inline-flex flex-row items-center justify-between w-full">
+                      <div className="inline-flex flex-row lg:gap-x-3 xl:gap-0 items-center justify-between w-full">
                         <span
-                          className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-4 ${
+                          className={`flex items-center justify-center rounded-2xl w-fit h-fit py-1 px-3 ${
                             user.profile.status === "inactive"
                               ? "bg-primary-400/7"
                               : user.profile.status === "active"
