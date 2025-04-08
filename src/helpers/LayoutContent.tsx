@@ -17,15 +17,15 @@ export function SideBarList(
           return (
             <li
               key={i}
-              className={`flex flex-row gap-x-2 lg:gap-x-1 xl:gap-x-3 items-center text-primary-500 w-full cursor-pointer ${paddingLeft}`}
+              className={`flex flex-row gap-x-3 items-center text-primary-500 w-full cursor-pointer ${paddingLeft}`}
             >
-              <div className="inline-flex flex-row gap-x-3 items-center">
+              <div className="inline-flex flex-row gap-x-3 items-center ">
                 <i
                   className={`fa-solid ${
                     Object.values(item)[0]
-                  } text-primary-500 xl:text-lg lg:text-[14px] w-[8%]`}
+                  } text-primary-500 xl:text-lg lg:text-[14px] w-[8%] md:w-[9%] lg:w-[7%] xl:w-[10%]`}
                 ></i>
-                <h4 className="text-[16px]">{Object.keys(item)[0]}</h4>
+                <h4 className="text-[16px] w-[92%] md:w-[91%] lg:w-[93%] xl:w-[90%]">{Object.keys(item)[0]}</h4>
               </div>
               <i className="fa-solid fa-angle-down text-primary-500 xl:text-lg lg:text-[14px]"></i>
             </li>
@@ -39,7 +39,7 @@ export function SideBarList(
                   router.replace("/login");
                 }
               }}
-              className={`flex flex-row gap-x-3 items-center w-full cursor-pointer ${
+              className={`flex flex-row lg:gap-x-3 gap-x-1 items-center w-full cursor-pointer ${
                 i === items.length - 1 && Object.keys(item)[0] === "Logout"
                   ? "border border-primary-400/10 border-l-0 border-r-0 border-b-0 pt-6 mt-4"
                   : ""
@@ -48,9 +48,9 @@ export function SideBarList(
               <i
                 className={`fa-solid ${
                   Object.values(item)[0]
-                } text-primary-500/50 xl:text-lg lg:text-[14px] w-[8%]`}
+                } text-primary-500/50 xl:text-lg lg:text-[14px] w-[8%] md:w-[5%] lg:w-[9%]`}
               ></i>
-              <h4 className="text-primary-500/50 w-[92%] text-[16px]">
+              <h4 className="text-primary-500/50 w-[92%] md:w-[95%] lg:w-[91%] text-[16px]">
                 {Object.keys(item)[0]}
               </h4>
             </li>
@@ -59,7 +59,7 @@ export function SideBarList(
           return (
             <li
               key={i}
-              className="text-primary-500 w-full flex flex-col gap-y-4"
+              className="text-primary-500 w-full flex flex-col gap-y-4 "
             >
               <h4 className={`text-[12px] ${paddingLeft}`}>
                 {Object.keys(item)[0].toUpperCase()}
@@ -92,7 +92,7 @@ export function SideBarList(
                             }`}
                           ></div>
                           <div
-                            className={`py-2 flex flex-row gap-x-3 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-7 pl-[14px] ${
+                            className={`py-2 flex flex-row lg:gap-x-3 gap-x-3 md:gap-x-1 items-center w-[98.5%] group-hover:bg-secondary-400/5 lg:pl-5 pl-[14px] ${
                               isSelected
                                 ? "bg-secondary-400/5"
                                 : "bg-transparent"
@@ -101,14 +101,14 @@ export function SideBarList(
                             <i
                               className={`fa-solid ${
                                 Object.values(nestedlistItem)[0]
-                              } xl:text-lg lg:text-[14px] w-[8%] group-hover:text-primary-500 ${
+                              } xl:text-lg lg:text-[14px] w-[8%] md:w-[5%] lg:w-[9%] group-hover:text-primary-500 ${
                                 isSelected
                                   ? "text-primary-500"
                                   : "text-primary-500/60"
                               }`}
                             ></i>
                             <h4
-                              className={`w-[92%] group-hover:text-primary-500 ${
+                              className={`w-[92%] md:w-[95%] lg:w-[91%] group-hover:text-primary-500 ${
                                 isSelected
                                   ? "text-primary-500"
                                   : "text-primary-500/60"
